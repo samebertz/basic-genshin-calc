@@ -1,13 +1,40 @@
 <!-- index.html -->
-<html>
+<html lang="en-US">
 <head>
-    <link rel="shortcut icon" href="favicon.gif">
+    <meta charset="utf-8">
+    <title>Gremlin Calculator</title>
+    <link rel="shortcut icon" href="favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="index.css">
 
     <!-- Do _not_  rely on this URL in production. Use only during development.  -->
     <script src="https://netflix.github.io/falcor/build/falcor.browser.js"></script>
+
+    <script src="data.js" defer></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
-    <script src="data.js"></script>
-    <script src="index.js"></script>
+  <div id="header">
+    <span>Gremlin Calculator</span>
+  </div>
+  <div id="wrapper">
+    <div id="main">
+      <div id="filter-bar">
+        <input id="filter-search" type="text" placeholder="search...">
+        <button id="anemo" class="filter-button">A</button>
+        <button id="pyro" class="filter-button">B</button>
+        <button id="cryo" class="filter-button">C</button>
+        <button id="electro" class="filter-button">D</button>
+        <button id="hydro" class="filter-button">E</button>
+        <button id="geo" class="filter-button">F</button>
+        <button id="dendro" class="filter-button">G</button>
+        <button id="clear" class="filter-button">G</button>
+      </div>
+      <div id="list">
+        <div class="list-element"></div>
+      </div>
+    </div>
+    <div id="sidebar"></div>
+  </div>
+  <div id="footer"></div>
 </body>
 </html>

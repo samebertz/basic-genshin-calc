@@ -1,0 +1,92 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #2c2c2c;
+}
+
+button {
+  border: initial;
+}
+
+#header, #footer {
+  position: fixed;
+  width: 100%;
+  height: 64px;
+  background: #1a1a1a;
+}
+
+#header {
+  top: 0;
+}
+
+#footer {
+  bottom: 0;
+}
+
+#main, #sidebar {
+  float: left;
+}
+
+#wrapper {
+  width: 100%;
+  height: calc(100% - 2*64px);
+  margin: 64px 0 64px 0;
+  /* padding: 16px 20% 16px 20%; */
+}
+
+#main {
+  width: calc(.7*70%);
+  height: calc(100% - 32px);
+  margin: 16px 0 16px 15%;
+  background: lightgray;
+}
+
+#sidebar {
+  width: calc(.7*30% - 16px);
+  height: calc(100% - 32px);
+  margin: 16px 0 16px 16px;
+  background: gray;
+}
+
+#filter-bar {
+  width: calc(100% - 16px);
+  height: 24px;
+  margin: 8px;
+  /* padding: 8px; */
+  background: #1a1a1a;
+  border-radius: 4px;
+  font-size: 0; /* fix stupid whitespace preservation between buttons */
+}
+
+input, button {
+  /*** fix button and text input alignment issue */
+  vertical-align: bottom; 
+}
+
+.filter-button {
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 4px 4px;
+  padding: 0;
+  /* border: 2px solid black; */
+  border-radius: 2px;
+  background: purple;
+}
+
+#filter-search {
+  width: 60%;
+  height: 16px;
+  margin: 4px 0 4px 4px;
+  padding: 0 0 0 2px;
+  border: 0;
+  background: gray;
+}
+
+/* #anemo {background: rgb(127, 255, 191) !important;}
+#pyro {background: rgb(255, 82, 29) !important;}
+#cryo {background: rgb(151, 243, 255) !important;}
+#electro {background: rgb(222, 137, 255) !important;}
+#hydro {background: rgb(49, 80, 255) !important;}
+#geo {background: rgb(251, 255, 0) !important;}
+#dendro {background: rgb(0, 211, 11) !important;} */
