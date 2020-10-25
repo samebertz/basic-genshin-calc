@@ -7,34 +7,45 @@
     <link rel="stylesheet" href="index.css">
 
     <!-- Do _not_  rely on this URL in production. Use only during development.  -->
-    <script src="https://netflix.github.io/falcor/build/falcor.browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
 
     <script src="data.js" defer></script>
     <script src="index.js" defer></script>
 </head>
 <body>
-  <div id="header">
+  <!-- <div id="header">
     <span>Gremlin Calculator</span>
-  </div>
+  </div> -->
   <div id="wrapper">
     <div id="main">
-      <div id="filter-bar">
-        <input id="filter-search" type="text" placeholder="search...">
-        <button id="anemo" class="filter-button">A</button>
-        <button id="pyro" class="filter-button">B</button>
-        <button id="cryo" class="filter-button">C</button>
-        <button id="electro" class="filter-button">D</button>
-        <button id="hydro" class="filter-button">E</button>
-        <button id="geo" class="filter-button">F</button>
-        <button id="dendro" class="filter-button">G</button>
-        <button id="clear" class="filter-button">G</button>
+      <div id="filter-bar" class="main-subsection">
+        <!-- <input id="filter-search" type="text" placeholder="search..."> -->
+        <button id="anemo" class="filter-button">
+          <!-- <img class="element-filter" src="/assets/elements/anemo.png" height="40px" width="40px"> -->
+        </button>
+        <button id="pyro" class="filter-button">
+          <!-- <img class="element-filter" src="/assets/elements/pyro.png" height="40px" width="40px"> -->
+        </button>
+        <button id="cryo" class="filter-button">
+          <!-- <img class="element-filter" src="/assets/elements/cryo.png" height="40px" width="40px"> -->
+        </button>
+        <button id="electro" class="filter-button">
+          <!-- <img class="element-filter" src="/assets/elements/electro.png" height="40px" width="40px"> -->
+        </button>
+        <button id="hydro" class="filter-button">
+          <!-- <img class="element-filter" src="/assets/elements/hydro.png" height="40px" width="40px"> -->
+        </button>
+        <button id="geo" class="filter-button">
+          <!-- <img class="element-filter" src="/assets/elements/geo.png" height="40px" width="40px"> -->
+        </button>
+        <!-- <button id="dendro" class="filter-button"><img class="element-filter" src="/assets/elements/dendro.png" height="40px" width="40px"></button> -->
+        <!-- <button id="reset" class="filter-button">🗑</button> -->
       </div>
-      <div id="list">
-        <div class="list-element"></div>
+      <div id="list" class="main-subsection">
       </div>
     </div>
     <div id="sidebar"></div>
   </div>
-  <div id="footer"></div>
+  <!-- <div id="footer"></div> -->
 </body>
 </html>

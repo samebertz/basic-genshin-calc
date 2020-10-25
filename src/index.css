@@ -2,27 +2,15 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #2c2c2c;
-}
-
-button {
-  border: initial;
-}
-
-#header, #footer {
-  position: fixed;
-  width: 100%;
-  height: 64px;
   background: #1a1a1a;
 }
 
-#header {
-  top: 0;
-}
-
-#footer {
-  bottom: 0;
-}
+/*** fix button and text input alignment issue */
+input, button { vertical-align: bottom; }
+/*** fix default outline */
+input:focus, button:focus { outline: none; }
+/*** fix default border */
+button { border: initial; }
 
 #main, #sidebar {
   float: left;
@@ -30,57 +18,125 @@ button {
 
 #wrapper {
   width: 100%;
-  height: calc(100% - 2*64px);
-  margin: 64px 0 64px 0;
-  /* padding: 16px 20% 16px 20%; */
+  height: 100%;
+  margin: 0;
 }
 
 #main {
   width: calc(.7*70%);
-  height: calc(100% - 32px);
-  margin: 16px 0 16px 15%;
-  background: lightgray;
+  height: 100%;
+  margin: 0 0 0 15%;
+  background: grey;
+}
+
+.main-subsection {
+  width: calc(100% - 16px);
+  margin: 8px 8px 0 8px;
+  background: #1a1a1a;
+  border-radius: 4px;
 }
 
 #sidebar {
   width: calc(.7*30% - 16px);
-  height: calc(100% - 32px);
-  margin: 16px 0 16px 16px;
-  background: gray;
+  height: 100%;
+  margin: 0 0 0 16px;
+  /* border-left: 16px solid #1a1a1a; */
+  background: grey;
 }
 
 #filter-bar {
-  width: calc(100% - 16px);
-  height: 24px;
-  margin: 8px;
-  /* padding: 8px; */
-  background: #1a1a1a;
-  border-radius: 4px;
+  height: 64px;
   font-size: 0; /* fix stupid whitespace preservation between buttons */
 }
 
-input, button {
-  /*** fix button and text input alignment issue */
-  vertical-align: bottom; 
-}
-
 .filter-button {
-  width: 16px;
-  height: 16px;
-  margin: 4px 0 4px 4px;
-  padding: 0;
-  /* border: 2px solid black; */
-  border-radius: 2px;
-  background: purple;
+  width: 48px;
+  height: 48px;
+  margin: 8px 0 8px 8px;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
 }
 
-#filter-search {
+#anemo {
+  background-image: url("/assets/elements/anemo.png");
+}
+#pyro {
+  background-image: url("/assets/elements/pyro.png");
+}
+#cryo {
+  background-image: url("/assets/elements/cryo.png");
+}
+#electro {
+  background-image: url("/assets/elements/electro.png");
+}
+#hydro {
+  background-image: url("/assets/elements/hydro.png");
+}
+#geo {
+  background-image: url("/assets/elements/geo.png");
+}
+#dendro {
+  background-image: url("/assets/elements/dendro.png");
+}
+
+/* #reset {
+  float: right;
+  margin: 8px;
+  background: darkred;
+} */
+
+.active-filter {
+  background-color: gray;
+}
+
+/* img .element-filter {
+  margin: 8px 0 8px 8px;
+} */
+
+/* #filter-search {
   width: 60%;
   height: 16px;
-  margin: 4px 0 4px 4px;
+  margin: 8px 0 8px 8px;
   padding: 0 0 0 2px;
   border: 0;
   background: gray;
+} */
+
+#list {
+  height: calc(100% - 64px - 3*8px);
+  overflow: hidden;
+}
+
+.list-element {
+  float: left;
+  width: calc(100% - 16px);
+  height: 128px;
+  margin: 8px 8px 0 8px;
+  background: gray;
+  border-radius: 4px;
+}
+
+.list-element:last-child {
+  margin-bottom: 8px;
+}
+
+.list-element > * {
+  float: left;
+}
+
+.character-name {
+  margin: 8px 0 8px 8px;
+  font: bold 32px sans-serif;
+  color: aliceblue;
+}
+
+.character-img {
+  width: 112px;
+  height: 112px;
+  margin: 8px 0 8px 8px;
 }
 
 /* #anemo {background: rgb(127, 255, 191) !important;}

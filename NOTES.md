@@ -3,9 +3,9 @@
 + Data
 + JSON
 
-Model manages data, in this case as a locally cached Falcor model, which takes queries from the controller.
+Model manages data, takes queries from the controller, and marshals responses. In this case the model is middleware (either a Falcor model and router, or a GraphQL server) that takes requests (paths or queries respectively), performs the DB access, packages the response, and returns data asynchronously in a shape matching the request.
 
-See [Falcor model](https://netflix.github.io/falcor/build/falcor.browser.js), [data.js](src/data.js)
+See [Falcor](https://netflix.github.io/falcor/), [GraphQL](https://graphql.org/), [data.js](src/data.js)
 
 ## View
 + HTML/CSS
