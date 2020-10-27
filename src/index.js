@@ -1,3 +1,14 @@
+const STRINGS = {
+  'localSpecialty': "Local Specialty",
+  'commonMaterial': "Common Material"
+}
+
+const ASSETS = {
+  characterImg: "/assets/characters/",
+  elementImg: "/assets/elements/",
+  weaponImg: "/assets/weapons/"
+}
+
 let main = document.getElementById('main'),
     filter = main.getElementsByClassName('filter-button'),
     list = document.getElementById('list')
@@ -60,8 +71,47 @@ function filterUpdate(event) {
 function updateListView(docs) {
   logDocs(docs)
   for(doc of docs) {
-    addListItem(doc)
+    list.append(listItemFromCharacterDoc(doc))
   }
+}
+
+function buildCharacterBadge(name, element, weapon) {
+  let div = document.createElement('div'),
+      img = document.createElement('img'),
+      elementBadge = document.createElement('img'),
+      weaponBadge = document.createElement('img'),
+      nameSpan = document.createElement('span'),
+      nameText = document.createTextNode(name)
+
+  img.classList.add('character-img')
+  img.src = ASSETS.characterImg + name + ".png"
+  elementBadge.classList.add('badge-img', 'element-img')
+  elementBadge.src = ASSETS.elementImg + element + ".png"
+  weaponBadge.classList.add('badge-img', 'weapon-img')
+  weaponBadge.src = ASSETS.weaponImg + weapon + ".png"
+  nameSpan.classList.add('character-name')
+  nameSpan.appendChild(nameText)
+
+  div.classList.add('character-badge')
+  div.replaceChildren(img, elementBadge, weaponBadge, nameSpan)
+  return div
+}
+
+function buildInfoBlock(label, value) {
+  let div = document.createElement('div'),
+      labelSpan = document.createElement('span'),
+      labelText = document.createTextNode(label+' : '),
+      valueSpan = document.createElement('span'),
+      valueText = document.createTextNode(value)
+
+  labelSpan.classList.add('info-label')
+  labelSpan.appendChild(labelText)
+  valueSpan.classList.add('info-text')
+  valueSpan.appendChild(valueText)
+
+  div.classList.add('info-block')
+  div.replaceChildren(labelSpan, valueSpan)
+  return div
 }
 
 /**
@@ -75,30 +125,26 @@ function updateListView(docs) {
  *    localspecialty: string
  *  }
  */
-function addListItem(doc) {
+function listItemFromCharacterDoc(doc) {
   let item = document.createElement('div'),
-      name = document.createElement('span'),
-      nameString = document.createTextNode(doc.name),
-      img = document.createElement('img'),
-      imgPath = '/assets/characters/' + doc.name + ".png",
-      weapon = document.createElement('span'),
-      weaponString = document.createTextNode("Weapon: " + doc.weapon),
-      localSpecialty = document.createElement('span'),
-      localSpecialtyString = document.createTextNode("Local Specialty: " + doc.localSpecialty),
-      commonMaterial = document.createElement('span'),
-      commonMaterialString = document.createTextNode("Common Material: " + doc.commonMaterial)
+      characterInfo = document.createElement('div'),
+      infoCol = document.createElement('div')
 
-  name.appendChild(nameString)
-  name.classList.add('character-name')
-  img.setAttribute('src', imgPath)
-  img.classList.add('character-img')
-  weapon.appendChild(weaponString)
-  localSpecialty.appendChild(localSpecialtyString)
-  commonMaterial.appendChild(commonMaterialString)
-  item.replaceChildren(img, name, document.createElement('br'), weapon, document.createElement('br'), localSpecialty, document.createElement('br'), commonMaterial)
+  infoCol.classList.add('info-col-1')
+  for(info of ['localSpecialty', 'commonMaterial']) {
+    infoCol.appendChild(buildInfoBlock(STRINGS[info], doc[info]))
+  }
+
+  characterInfo.classList.add('character-info')
+  characterInfo.replaceChildren(infoCol)
 
   item.classList.add('list-element')
-  list.append(item)
+  item.replaceChildren(
+    buildCharacterBadge(doc.name, doc.element, doc.weapon),
+    characterInfo
+  )
+
+  return item
 }
 
 /** listen: for element in getElementsByClass(filter-button)
