@@ -26,7 +26,7 @@ button { border: initial; }
   width: calc(.7*70%);
   height: 100%;
   margin: 0 0 0 15%;
-  background: grey;
+  background: #333333;
 }
 
 .main-subsection {
@@ -41,7 +41,7 @@ button { border: initial; }
   height: 100%;
   margin: 0 0 0 16px;
   /* border-left: 16px solid #1a1a1a; */
-  background: grey;
+  background: #333333;
 }
 
 #filter-bar {
@@ -60,27 +60,13 @@ button { border: initial; }
   background-repeat: no-repeat;
 }
 
-#anemo {
-  background-image: url("/assets/elements/anemo.png");
-}
-#pyro {
-  background-image: url("/assets/elements/pyro.png");
-}
-#cryo {
-  background-image: url("/assets/elements/cryo.png");
-}
-#electro {
-  background-image: url("/assets/elements/electro.png");
-}
-#hydro {
-  background-image: url("/assets/elements/hydro.png");
-}
-#geo {
-  background-image: url("/assets/elements/geo.png");
-}
-#dendro {
-  background-image: url("/assets/elements/dendro.png");
-}
+#anemo {background-image: url("/assets/elements/anemo.png");}
+#pyro {background-image: url("/assets/elements/pyro.png");}
+#cryo {background-image: url("/assets/elements/cryo.png");}
+#electro {background-image: url("/assets/elements/electro.png");}
+#hydro {background-image: url("/assets/elements/hydro.png");}
+#geo {background-image: url("/assets/elements/geo.png");}
+#dendro {background-image: url("/assets/elements/dendro.png");}
 
 /* #reset {
   float: right;
@@ -89,7 +75,7 @@ button { border: initial; }
 } */
 
 .active-filter {
-  background-color: gray;
+  background-color: purple;
 }
 
 /* img .element-filter {
@@ -107,16 +93,19 @@ button { border: initial; }
 
 #list {
   height: calc(100% - 64px - 3*8px);
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .list-element {
   float: left;
   width: calc(100% - 16px);
   height: 128px;
+  overflow: hidden;
   margin: 8px 8px 0 8px;
-  background: gray;
+  background: #333333;
   border-radius: 4px;
+  font: bold 12px sans-serif;
+  color: aliceblue;
 }
 
 .list-element:last-child {
@@ -127,16 +116,69 @@ button { border: initial; }
   float: left;
 }
 
-.character-name {
+.character-badge {
+  position: relative;
+  width: 92px;
+  height: 112px;
   margin: 8px 0 8px 8px;
-  font: bold 32px sans-serif;
-  color: aliceblue;
+}
+
+.character-name {
+  float: left;
+  width: 100%;
+  padding-top: 4px;
+  text-align: center;
+  font-size: 16px;
 }
 
 .character-img {
-  width: 112px;
-  height: 112px;
-  margin: 8px 0 8px 8px;
+  float: left;
+  width: 92px;
+  height: 92px;
+}
+
+.badge-img {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 12px;
+  background-color: #1a1a1a;
+}
+
+.element-img {
+  top: 0;
+  right: 0;
+}
+
+.weapon-img {
+  top: 20px;
+  right: 0;
+}
+
+.character-info {
+  width: calc(100% - 116px);
+  height: calc(100% - 16px);
+  margin: 8px;
+  font-weight: normal;
+}
+
+.info-col-1 {
+  float: left;
+  width: calc(50% - 8px);
+  padding-left: 4px;
+}
+
+.info-col-2 {
+  float: left;
+  width: calc(50% - 8px);
+  margin-left: 8px;
+}
+
+.info-label {
+  white-space: pre;
+}
+
+.info-text {
 }
 
 /* #anemo {background: rgb(127, 255, 191) !important;}

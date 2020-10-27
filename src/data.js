@@ -227,6 +227,9 @@ function cleanup() {
   db.destroy().then().catch(e => {throw e})
 }
 
-function logDocs(docs) {
-  console.log(JSON.stringify(docs))
+function logDocs(docs, clean=false) {
+  if(clean)
+    console.log(JSON.stringify(docs.rows.map(e => e.doc)))
+  else
+    console.log(JSON.stringify(docs))
 }

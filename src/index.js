@@ -35,21 +35,30 @@ function filterUpdate(event) {
   if(activeFilters.length == 0)
     db.allDocs({include_docs: true}).then(/*logDocs*/).catch()
   else
-    for(element of activeFilters) {
-      db.query('filter_index/by_element', {
-        key: element,
-        include_docs: true
-      }).then(docs => {
-        logDocs(docs)
-        updateListView(docs.rows.map(e => e.doc))
-      }).catch(e => console.log(e))
-    }
+    // for(element of activeFilters) {
+    //   db.query('filter_index/by_element', {
+    //     key: element,
+    //     include_docs: true
+    //   }).then(docs => {
+    //     logDocs(docs)
+    //     updateListView(docs.rows.map(e => e.doc))
+    //   }).catch(e => console.log(e))
+    // }
+    
+    db.query('filter_index/by_element', {
+      keys: activeFilters,
+      include_docs: true
+    }).then(docs => {
+      // logDocs(docs)
+      updateListView(docs.rows.map(e => e.doc).sort((a,b)=>{return a.name>b.name}))
+    }).catch(e => console.log(e))
 }
 
 /** updateListView: for item in response createListItem(fromTemplate(type))
  *  list.push(newItem)
  */
 function updateListView(docs) {
+  logDocs(docs)
   for(doc of docs) {
     addListItem(doc)
   }
@@ -71,13 +80,22 @@ function addListItem(doc) {
       name = document.createElement('span'),
       nameString = document.createTextNode(doc.name),
       img = document.createElement('img'),
-      imgPath = '/assets/characters/' + doc.name + ".png"
+      imgPath = '/assets/characters/' + doc.name + ".png",
+      weapon = document.createElement('span'),
+      weaponString = document.createTextNode("Weapon: " + doc.weapon),
+      localSpecialty = document.createElement('span'),
+      localSpecialtyString = document.createTextNode("Local Specialty: " + doc.localSpecialty),
+      commonMaterial = document.createElement('span'),
+      commonMaterialString = document.createTextNode("Common Material: " + doc.commonMaterial)
 
   name.appendChild(nameString)
   name.classList.add('character-name')
   img.setAttribute('src', imgPath)
   img.classList.add('character-img')
-  item.replaceChildren(img, name)
+  weapon.appendChild(weaponString)
+  localSpecialty.appendChild(localSpecialtyString)
+  commonMaterial.appendChild(commonMaterialString)
+  item.replaceChildren(img, name, document.createElement('br'), weapon, document.createElement('br'), localSpecialty, document.createElement('br'), commonMaterial)
 
   item.classList.add('list-element')
   list.append(item)
