@@ -66,7 +66,12 @@ button { border: initial; }
 #electro {background-image: url("/assets/elements/electro.png");}
 #hydro {background-image: url("/assets/elements/hydro.png");}
 #geo {background-image: url("/assets/elements/geo.png");}
-#dendro {background-image: url("/assets/elements/dendro.png");}
+/* #dendro {background-image: url("/assets/elements/dendro.png");} */
+#bow {background-image: url("/assets/weapons/bow.png");}
+#catalyst {background-image: url("/assets/weapons/catalyst.png");}
+#claymore {background-image: url("/assets/weapons/claymore.png");}
+#polearm {background-image: url("/assets/weapons/polearm.png");}
+#sword {background-image: url("/assets/weapons/sword.png");}
 
 /* #reset {
   float: right;

@@ -208,6 +208,9 @@ function buildIndexes() {
       },
       by_weapon: {
         map: (doc => emit(doc.weapon.toLowerCase())).toString()
+      },
+      by_triple: {
+        map: (doc => emit([doc.element.toLowerCase(), doc.rank, doc.weapon.toLowerCase()])).toString()
       }
     }
   }
@@ -220,6 +223,8 @@ function buildIndexes() {
     return db.query('filter_index/by_rank', {limit: 0})
   }).catch(e => {throw e}).then(() => {
     return db.query('filter_index/by_weapon', {limit: 0})
+  }).catch(e => {throw e}).then(() => {
+    return db.query('filter_index/by_triple', {limit: 0})
   }).catch(e => {throw e}).then()
 }
 

@@ -3,11 +3,9 @@
 Character list with filter buttons by rank, element, weapon
 ### Checklist
 1. Model
-    + DB
-    + GraphQL / Falcor Schema
-    + GraphQL resolver / Falcor router
+    - [x] pouchDB / IndexedDB
 2. View
-    + HTML/CSS
+    - [x] HTML/CSS
 3. Controller
-    + JS bindings on view
-    + JS model response handlers
+    - [x] JS bindings on view
+    - [x] JS model response handlers

@@ -1,3 +1,16 @@
+const ELEMENTS = [
+  'anemo',
+  'pyro',
+  'cryo',
+  'electro',
+  'hydro',
+  'geo'
+]
+
+const WEAPONS = [
+  'bow','catalyst','claymore','polearm','sword'
+]
+
 const STRINGS = {
   'localSpecialty': "Local Specialty",
   'commonMaterial': "Common Material"
@@ -22,7 +35,7 @@ function filterUpdate(event) {
   /**
    * update filter view, construct query, perform query, wait for result, update list view
    */
-  list.replaceChildren()
+  // list.replaceChildren()
   // fetch current filter options from view OR keep filter state ???
 
   /**
@@ -36,16 +49,66 @@ function filterUpdate(event) {
   /**
    * fetch filter options from view
    */
-  activeFilters = []
+  // activeFilters = []
+  // for(element of filter) {
+  //   if(element.classList.contains('active-filter'))
+  //     activeFilters.push(element.id)
+  // }
+
+  // triple: [element, rank, weapon]
+  let activeElementFilters = [],
+      activeRankFilters = [],
+      activeWeaponFilters = []
   for(element of filter) {
-    if(element.classList.contains('active-filter'))
-      activeFilters.push(element.id)
+    if(element.classList.contains('active-filter')) {
+      if(element.classList.contains('element-filter'))
+        activeElementFilters.push(element.id)
+      if(element.classList.contains('rank-filter'))
+        activeRankFilters.push(element.id)
+      if(element.classList.contains('weapon-filter'))
+        activeWeaponFilters.push(element.id)
+    }
   }
+  //construct filter keys
+  let keys = []
+  if(activeElementFilters.length > 0) {
+    keys.push(...activeElementFilters.map(e => [e]))
+  } else {
+    keys.push(...ELEMENTS)
+  }
+  // if(activeRankFilters.length > 0) {
+    keys = keys.flatMap(e => {
+      let x = []
+      for(rankFilter of [4,5]) {
+        x.push([e, rankFilter].flat())
+      }
+      return x
+    })
+  // }
+  if(activeWeaponFilters.length == 0)
+    activeWeaponFilters.push(...WEAPONS)
+  keys = keys.flatMap(e => {
+    let x = []
+    for(weaponFilter of activeWeaponFilters) {
+      x.push([e, weaponFilter].flat())
+    }
+    return x
+  })
+
+  console.log(JSON.stringify(keys))
+  db.query('filter_index/by_triple', {
+    keys: keys,
+    include_docs: true
+  }).then(docs => {
+    // logDocs(docs)
+    updateListView(docs.rows.map(e => e.doc).sort((a,b)=>{return a.name>b.name}))
+  }).catch(e => console.log(e))
 
   // TODO: split query out, so initial "all" query after view indexes are built/checked isn't called through filterUpdate so can avoid optional chaining on event
-  if(activeFilters.length == 0)
-    db.allDocs({include_docs: true}).then(/*logDocs*/).catch()
-  else
+  // if(activeFilters.length == 0) {
+  //   db.allDocs({include_docs: true}).then(/*logDocs*/).catch()
+  // } else {
+
     // for(element of activeFilters) {
     //   db.query('filter_index/by_element', {
     //     key: element,
@@ -55,24 +118,28 @@ function filterUpdate(event) {
     //     updateListView(docs.rows.map(e => e.doc))
     //   }).catch(e => console.log(e))
     // }
+
     
-    db.query('filter_index/by_element', {
-      keys: activeFilters,
-      include_docs: true
-    }).then(docs => {
-      // logDocs(docs)
-      updateListView(docs.rows.map(e => e.doc).sort((a,b)=>{return a.name>b.name}))
-    }).catch(e => console.log(e))
+    // db.query('filter_index/by_element', {
+    //   keys: activeFilters,
+    //   include_docs: true
+    // }).then(docs => {
+    //   // logDocs(docs)
+    //   updateListView(docs.rows.map(e => e.doc).sort((a,b)=>{return a.name>b.name}))
+    // }).catch(e => console.log(e))
+  // }
 }
 
 /** updateListView: for item in response createListItem(fromTemplate(type))
  *  list.push(newItem)
  */
 function updateListView(docs) {
-  logDocs(docs)
+  // logDocs(docs)
+  listItems = []
   for(doc of docs) {
-    list.append(listItemFromCharacterDoc(doc))
+    listItems.push(listItemFromCharacterDoc(doc))
   }
+  list.replaceChildren(...listItems)
 }
 
 function buildCharacterBadge(name, element, weapon) {
