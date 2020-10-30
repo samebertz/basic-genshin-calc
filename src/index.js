@@ -19,7 +19,86 @@ const STRINGS = {
 const ASSETS = {
   characterImg: "/assets/characters/",
   elementImg: "/assets/elements/",
-  weaponImg: "/assets/weapons/"
+  weaponImg: "/assets/weapons/",
+  materialImg: "/assets/materials/"
+}
+
+const MATERIALS = {
+  "localSpecialty": [
+    "small lamp grass",
+    "valberry",
+    "windwheel aster",
+    "wolfhook",
+    "dandelion seed",
+    "cecilia",
+    "philanemo mushroom",
+    "calla lilly",
+    "cor lapis",
+    "jueyun chili",
+    "qingxin",
+    "violetgrass",
+    "noctilucous jade",
+    "glaze lily",
+    "starconch"
+  ],
+  "commonMaterial": {
+    "slime condensate": {
+      "type": "slime",
+      "tiers": [
+        "_ condensate",
+        "_ secretions",
+        "_ concentrate"
+      ]
+    },
+    "damaged mask": {
+      "type": "mask",
+      "tiers": [
+        "damaged _",
+        "stained _",
+        "ominous _"
+      ]
+    },
+    "firm arrowhead": {
+      "type": "arrowhead",
+      "tiers": [
+        "firm _",
+        "sharp _",
+        "historic _"
+      ]
+    },
+    "divining scroll": {
+      "type": "scroll",
+      "tiers": [
+        "divining _",
+        "sealed _",
+        "forbidden curse _"
+      ]
+    },
+    "recruit's insignia": {
+      "type": "insignia+F",
+      "tiers": [
+        "recruit's _",
+        "sergeant's _",
+        "lieutenant's _"
+      ]
+    },
+    "treasure hoarder insignia": {
+      "type": "insignia+TH",
+      "tiers": [
+        "treasure hoarder _",
+        "silver raven _",
+        "golden raven _"
+      ]
+    },
+    "whopperflower nectar": {
+      "type": "nectar",
+      "tiers": [
+        "whopperflower _",
+        "shimmering _",
+        "energy _"
+      ]
+    }
+  }
 }
 
 let main = document.getElementById('main'),
@@ -182,6 +261,29 @@ function buildInfoBlock(label, value) {
 }
 
 /**
+ * buildMaterialBadge accepts a material category, name, and tier and constructs a div containing an image of the material with a label/caption of the material category
+ * 
+ * @param {string} type - category of the material
+ * @param {string} name - name of the material
+ * @param {int} tier - tier of the material
+ */
+function buildMaterialBadge(type, name, tier) {
+  let div = document.createElement('div'),
+      img = document.createElement('img'),
+      nameSpan = document.createElement('span'),
+      nameText = document.createTextNode(name)
+
+  img.classList.add('material-img')
+  img.src = ASSETS.materialImg + type + "/item_" + name.replace(" ","_") + ".png"
+  nameSpan.classList.add('material-name')
+  nameSpan.appendChild(nameText)
+
+  div.classList.add('material-badge')
+  div.replaceChildren(img, nameSpan)
+  return div
+}
+
+/**
  * doc: 
  *  {
  *    name: string,
@@ -195,15 +297,15 @@ function buildInfoBlock(label, value) {
 function listItemFromCharacterDoc(doc) {
   let item = document.createElement('div'),
       characterInfo = document.createElement('div'),
-      infoCol = document.createElement('div')
+      infoCol1 = document.createElement('div')
 
-  infoCol.classList.add('info-col-1')
+  infoCol1.classList.add('info-col-1')
   for(info of ['localSpecialty', 'commonMaterial']) {
-    infoCol.appendChild(buildInfoBlock(STRINGS[info], doc[info]))
+    infoCol1.appendChild(buildMaterialBadge(info, doc[info]))
   }
 
   characterInfo.classList.add('character-info')
-  characterInfo.replaceChildren(infoCol)
+  characterInfo.replaceChildren(infoCol1)
 
   item.classList.add('list-element')
   item.replaceChildren(

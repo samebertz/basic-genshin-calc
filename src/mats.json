@@ -1,0 +1,280 @@
+{
+  "boss": [
+    {
+      "element": "anemo",
+      "shard": "vayuda turqoise",
+      "material": "hurricane seed"
+    },
+    {
+      "element": "pyro",
+      "shard": "agnidus agate",
+      "material": "everflame seed"
+    },
+    {
+      "element": "cryo",
+      "shard": "shivada jade",
+      "material": "hoarfrost core"
+    },
+    {
+      "element": "electro",
+      "shard": "vajrada amethyst",
+      "material": "lightning prism"
+    },
+    {
+      "element": "hydro",
+      "shard": "varunada lazurite",
+      "material": "cleansing heart"
+    },
+    {
+      "element": "geo",
+      "shard": "prithiva topaz",
+      "material": "basalt pillar"
+    },
+    {
+      "element": "dendro",
+      "shard": "-",
+      "material": "-"
+    }
+  ],
+  "local": [
+    "small lamp grass",
+    "valberry",
+    "windwheel aster",
+    "wolfhook",
+    "dandelion seed",
+    "cecilia",
+    "philanemo mushroom",
+    "calla lilly",
+    "cor lapis",
+    "jueyun chili",
+    "qingxin",
+    "violetgrass",
+    "noctilucous jade",
+    "glaze lily",
+    "starconch"
+  ],
+  "common": [
+    {
+      "type": "slime",
+      "name": "slime condensate",
+      "tiers": [
+        "_ condensate",
+        "_ secretions",
+        "_ concentrate"
+      ]
+    },
+    {
+      "type": "mask",
+      "name": "damaged mask",
+      "tiers": [
+        "damaged _",
+        "stained _",
+        "ominous _"
+      ]
+    },
+    {
+      "type": "arrowhead",
+      "name": "firm arrowhead",
+      "tiers": [
+        "firm _",
+        "sharp _",
+        "historic _"
+      ]
+    },
+    {
+      "type": "scroll",
+      "name": "divining scroll",
+      "tiers": [
+        "divining _",
+        "sealed _",
+        "forbidden curse _"
+      ]
+    },
+    {
+      "type": "insignia+F",
+      "name": "recruit's insignia",
+      "tiers": [
+        "recruit's _",
+        "sergeant's _",
+        "lieutenant's _"
+      ]
+    },
+    {
+      "type": "insignia+TH",
+      "name": "treasure hoarder insignia",
+      "tiers": [
+        "treasure hoarder _",
+        "silver raven _",
+        "golden raven _"
+      ]
+    },
+    {
+      "type": "nectar",
+      "name": "whopperflower nectar",
+      "tiers": [
+        "whopperflower _",
+        "shimmering _",
+        "energy _"
+      ]
+    }
+  ],
+  "rare": [
+    {
+      "type": "horn",
+      "name": "heavy horn",
+      "tiers": [
+        "heavy _",
+        "black copper _",
+        "black crystal _"
+      ]
+    },
+    {
+      "type": "ley line",
+      "name": "dead lay line branches",
+      "tiers": [
+        "dead _ branches",
+        "dead _ leaves",
+        "_ sprouts"
+      ]
+    },
+    {
+      "type": "chaos",
+      "name": "chaos device",
+      "tiers": [
+        "_ device",
+        "_ circuit",
+        "_ core"
+      ]
+    },
+    {
+      "type": "mist",
+      "name": "mist flower pollen",
+      "tiers": [
+        "_ flower pollen",
+        "_ grass",
+        "_ grass lamp"
+      ]
+    },
+    {
+      "type": "sacrificial knife",
+      "name": "hunter's sacrificial knife",
+      "tiers": [
+        "hunter's _",
+        "agent's _",
+        "inspector's _"
+      ]
+    },
+    {
+      "type": "bone shard",
+      "name": "fragile bone shard",
+      "tiers": [
+        "fragile _",
+        "sturdy _",
+        "fossilized _"
+      ]
+    }
+  ],
+  "weapon": [
+    {
+      "type": "of decarabian's",
+      "name": "tile of decarabian's tower",
+      "tiers": [
+        "tile _ tower",
+        "debris _ city",
+        "fragment _ epic",
+        "scattered piece _ dream"
+      ]
+    },
+    {
+      "type": "boreal wolf's",
+      "name": "boreal wolf's milk tooth",
+      "tiers": [
+        "_ milk tooth",
+        "_ cracked tooth",
+        "_ broken fang",
+        "_ nostalgia"
+      ]
+    },
+    {
+      "type": "of the dandelion gladiator",
+      "name": "fetters of the dandelion gladiator",
+      "tiers": [
+        "fetters _",
+        "chains _",
+        "shackles _",
+        "dream _"
+      ]
+    },
+    {
+      "type": "from guyun",
+      "name": "luminous sands from guyun",
+      "tiers": [
+        "luminous sands _",
+        "lustrous stone _",
+        "relic _",
+        "divine body _"
+      ]
+    },
+    {
+      "type": "mist veiled",
+      "name": "mist veiled lead elixer",
+      "tiers": [
+        "_ lead elixer",
+        "_ mercury elixer",
+        "_ gold elixer",
+        "_ primo elixer"
+      ]
+    },
+    {
+      "type": "of aerosiderite",
+      "name": "grain of aerosiderite",
+      "tiers": [
+        "grain _",
+        "piece _",
+        "bit _",
+        "chunk _"
+      ]
+    }
+  ],
+  "shard": {
+    "tiers": [
+      "_ sliver",
+      "_ fragment",
+      "_ chunk",
+      "_ gemstone"
+    ]
+  },
+  "talent": {
+    "names": [
+      "freedom",
+      "resistance",
+      "ballad",
+      "prosperity",
+      "diligence",
+      "gold"
+    ],
+    "tiers": [
+      "teachings of \"_\"",
+      "guide to \"_\"",
+      "philosophies of \"_\""
+    ]
+  },
+  "weekly": [
+    {
+      "name": "_ of boreas",
+      "types": [
+        "tail",
+        "ring",
+        "spirit locket"
+      ]
+    },
+    {
+      "name": "dvalin's _",
+      "types": [
+        "plume",
+        "claw",
+        "sigh"
+      ]
+    }
+  ]
+}
