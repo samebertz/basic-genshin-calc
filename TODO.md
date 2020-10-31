@@ -12,7 +12,18 @@ Character list with filter buttons by rank, element, weapon
 
 # Next
 + finish asset import
-+ finish character data import
-+ 
-+ start weapon data import
-+ start artifact data import
+  - [x] characters
+  - [x] weapon types
+  - [x] enhancement materials
+  - [x] ascension materials
+  - weapons
+  - artifacts
+  - cooking
+  - alchemy
++ finish data import
+  - [x] character data
+  - talent data
+  - weapon data
+  - artifact data
++ add detail view
++ implement calculator

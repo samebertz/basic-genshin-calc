@@ -4,168 +4,170 @@ let characterData = [
         rank: 4,
         element: "Pyro",
         weapon: "Bow",
-        localSpecialty: "Small Lamp Grass",
-        commonMaterial: "Firm Arrowhead"
+        local: "Small Lamp Grass",
+        common: "Firm Arrowhead",
+        weekly: "Small Lamp Grass",
+        talent: "Small Lamp Grass"
     },
     {
         name: "Barbara",
         rank: 4,
         element: "Hydro",
         weapon: "Catalyst",
-        localSpecialty: "Philanemo Mushroom",
-        commonMaterial: "Divining Scroll"
+        local: "Philanemo Mushroom",
+        common: "Divining Scroll"
     },
     {
         name: "Beidou",
         rank: 4,
         element: "Electro",
         weapon: "Claymore",
-        localSpecialty: "Noctilucous Jade",
-        commonMaterial: "Treasure Hoarder Insignia"
+        local: "Noctilucous Jade",
+        common: "Treasure Hoarder Insignia"
     },
     {
         name: "Bennett",
         rank: 4,
         element: "Pyro",
         weapon: "Sword",
-        localSpecialty: "Windwheel Aster",
-        commonMaterial: "Treasure Hoarder Insignia"
+        local: "Windwheel Aster",
+        common: "Treasure Hoarder Insignia"
     },
     {
         name: "Chongyun",
         rank: 4,
         element: "Cryo",
         weapon: "Claymore",
-        localSpecialty: "Cor Lapis",
-        commonMaterial: "Damaged Mask"
+        local: "Cor Lapis",
+        common: "Damaged Mask"
     },
     {
         name: "Diluc",
         rank: 5,
         element: "Pyro",
         weapon: "Claymore",
-        localSpecialty: "Small Lamp Grass",
-        commonMaterial: "Recruit's Insignia"
+        local: "Small Lamp Grass",
+        common: "Recruit's Insignia"
     },
     {
         name: "Fischl",
         rank: 4,
         element: "Electro",
         weapon: "Bow",
-        localSpecialty: "Small Lamp Grass",
-        commonMaterial: "Firm Arrowhead"
+        local: "Small Lamp Grass",
+        common: "Firm Arrowhead"
     },
     {
         name: "Jean",
         rank: 5,
         element: "Anemo",
         weapon: "Sword",
-        localSpecialty: "Dandelion Seed",
-        commonMaterial: "Damaged Mask"
+        local: "Dandelion Seed",
+        common: "Damaged Mask"
     },
     {
         name: "Kaeya",
         rank: 4,
         element: "Cryo",
         weapon: "Sword",
-        localSpecialty: "Calla Lily",
-        commonMaterial: "Treasure Hoarder Insignia"
+        local: "Calla Lily",
+        common: "Treasure Hoarder Insignia"
     },
     {
         name: "Keqing",
         rank: 5,
         element: "Electro",
         weapon: "Sword",
-        localSpecialty: "Cor Lapis",
-        commonMaterial: "Whopperflower Nectar"
+        local: "Cor Lapis",
+        common: "Whopperflower Nectar"
     },
     {
         name: "Lisa",
         rank: 4,
         element: "Electro",
         weapon: "Catalyst",
-        localSpecialty: "Valberry",
-        commonMaterial: "Slime Condensate"
+        local: "Valberry",
+        common: "Slime Condensate"
     },
     {
         name: "Mona",
         rank: 5,
         element: "Hydro",
         weapon: "Catalyst",
-        localSpecialty: "Philanemo Mushroom",
-        commonMaterial: "Whopperflower Nectar"
+        local: "Philanemo Mushroom",
+        common: "Whopperflower Nectar"
     },
     {
         name: "Ningguang",
         rank: 4,
         element: "Geo",
         weapon: "Catalyst",
-        localSpecialty: "Glaze Lily",
-        commonMaterial: "Recruit's Insignia"
+        local: "Glaze Lily",
+        common: "Recruit's Insignia"
     },
     {
         name: "Noelle",
         rank: 4,
         element: "Geo",
         weapon: "Claymore",
-        localSpecialty: "Valberry",
-        commonMaterial: "Damaged Mask"
+        local: "Valberry",
+        common: "Damaged Mask"
     },
     {
         name: "Qiqi",
         rank: 5,
         element: "Cryo",
         weapon: "Sword",
-        localSpecialty: "Violetgrass",
-        commonMaterial: "Divining Scroll"
+        local: "Violetgrass",
+        common: "Divining Scroll"
     },
     {
         name: "Razor",
         rank: 4,
         element: "Electro",
         weapon: "Claymore",
-        localSpecialty: "Wolfhook",
-        commonMaterial: "Damaged Mask"
+        local: "Wolfhook",
+        common: "Damaged Mask"
     },
     {
         name: "Sucrose",
         rank: 4,
         element: "Anemo",
         weapon: "Catalyst",
-        localSpecialty: "Windwheel Aster",
-        commonMaterial: "Whopperflower Nectar"
+        local: "Windwheel Aster",
+        common: "Whopperflower Nectar"
     },
     {
         name: "Traveler",
         rank: 5,
         element: "Adaptive",
         weapon: "Sword",
-        localSpecialty: "Windwheel Aster",
-        commonMaterial: "Damaged Mask"
+        local: "Windwheel Aster",
+        common: "Damaged Mask"
     },
     {
         name: "Venti",
         rank: 5,
         element: "Anemo",
         weapon: "Bow",
-        localSpecialty: "Cecilia",
-        commonMaterial: "Slime Condensate"
+        local: "Cecilia",
+        common: "Slime Condensate"
     },
     {
         name: "Xiangling",
         rank: 4,
         element: "Pyro",
         weapon: "Polearm",
-        localSpecialty: "Jueyun Chili",
-        commonMaterial: "Slime Condensate"
+        local: "Jueyun Chili",
+        common: "Slime Condensate"
     },
     {
         name: "Xingqiu",
         rank: 4,
         element: "Hydro",
         weapon: "Sword",
-        localSpecialty: "Silk Flower",
-        commonMaterial: "Damaged Mask"
+        local: "Silk Flower",
+        common: "Damaged Mask"
     }
 ]
 

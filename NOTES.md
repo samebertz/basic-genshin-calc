@@ -1,3 +1,41 @@
+# Scratch
+## Directory Layout
+### Current
+```
+assets
+┣ characters
+┣ elements
+┣ materials
+┃ ┣ boss
+┃ ┣ commonMaterial
+┃ ┣ enhancement
+┃ ┣ localSpecialty
+┃ ┣ other
+┃ ┣ rareMaterial
+┃ ┣ shard
+┃ ┣ talent
+┃ ┗ weapon
+┗ weapons
+```
+### Target
+```
+assets
+┣ character
+┣ weapon
+┣ element
+┗ material
+  ┣ domain
+  ┃ ┣ weapon
+  ┃ ┗ talent
+  ┣ boss
+  ┣ elite
+  ┃ ┣ crystal
+  ┃ ┗ core
+  ┣ rare
+  ┣ common
+  ┣ local
+  ┗ other
+```
 # MVC Pattern in Context
 ## Model
 + Data
