@@ -70,7 +70,7 @@ const MATERIALS = {
       "tiers": [
         "firm _",
         "sharp _",
-        "historic _"
+        "weathered _"
       ]
     },
     "divining scroll": {
@@ -275,7 +275,7 @@ function compileCalc(result) {
   for(common in commons) {
     for(let tier = 0; tier < 3; tier++) {
       if(commons[common][tier] > 0)
-        div.appendChild(buildCalcResult(buildMaterialBadge('common', MATERIALS["common"][common.toLowerCase()]["tiers"][tier].replace("_", MATERIALS["common"][common.toLowerCase()]["type"])), commons[common][tier]))
+        div.appendChild(buildCalcResult(buildMaterialBadge('common', MATERIALS["common"][common.toLowerCase()]["tiers"][tier].replace("_", MATERIALS["common"][common.toLowerCase()]["type"].replace(/\+.*/, ""))), commons[common][tier]))
     }
   }
   return div
