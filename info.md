@@ -30,7 +30,7 @@ calculateXPMaterials(xp):
   book3 = ceil((xp - book1 * 20000 - book2 * 5000) / 1000)
   return [book1, book2, book3]
 calculateMoraForXPMaterials(materials):
-  return .2 * (book1*20000 + book2*5000 + book1*1000)
+  return .2 * (book1*20000 + book2*5000 + book3*1000)
 getLevelCost(fromLevel, toLevel):
   fromXP = lookupXPByLevel(from), toXP = lookupXPByLevel(to)
   materials = calculateXPMaterials(toXP - fromXP)

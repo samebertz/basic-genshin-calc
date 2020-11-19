@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
 
     <script src="data.js" defer></script>
+    <script src="calc.js" defer></script>
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -53,9 +54,9 @@
       <div id="list" class="main-subsection">
         <div class="list-element">
           <div class="character-badge">
-            <img src="/assets/characters/jean.png" class="character-img">
-            <img src="/assets/elements/anemo.png" class="badge-img element-img">
-            <img src="/assets/weapons/sword.png" class="badge-img weapon-img">
+            <img src="/assets/character/jean.png" class="character-img">
+            <img src="/assets/element/anemo.png" class="badge-img element-img">
+            <img src="/assets/weapon/sword.png" class="badge-img weapon-img">
             <span class="character-name">Jean</span>
           </div>
           <div class="character-info">
@@ -85,7 +86,13 @@
         </div>
       </div>
     </div>
-    <div id="sidebar"></div>
+    <div id="sidebar">
+      <div id="calc">
+        Material Calculator
+      </div>
+      <div id="calc-result">
+      </div>
+    </div>
   </div>
   <!-- <div id="footer"></div> -->
 </body>

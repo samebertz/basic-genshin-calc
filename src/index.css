@@ -60,18 +60,18 @@ button { border: initial; }
   background-repeat: no-repeat;
 }
 
-#anemo {background-image: url("/assets/elements/anemo.png");}
-#pyro {background-image: url("/assets/elements/pyro.png");}
-#cryo {background-image: url("/assets/elements/cryo.png");}
-#electro {background-image: url("/assets/elements/electro.png");}
-#hydro {background-image: url("/assets/elements/hydro.png");}
-#geo {background-image: url("/assets/elements/geo.png");}
-/* #dendro {background-image: url("/assets/elements/dendro.png");} */
-#bow {background-image: url("/assets/weapons/bow.png");}
-#catalyst {background-image: url("/assets/weapons/catalyst.png");}
-#claymore {background-image: url("/assets/weapons/claymore.png");}
-#polearm {background-image: url("/assets/weapons/polearm.png");}
-#sword {background-image: url("/assets/weapons/sword.png");}
+#anemo {background-image: url("/assets/element/anemo.png");}
+#pyro {background-image: url("/assets/element/pyro.png");}
+#cryo {background-image: url("/assets/element/cryo.png");}
+#electro {background-image: url("/assets/element/electro.png");}
+#hydro {background-image: url("/assets/element/hydro.png");}
+#geo {background-image: url("/assets/element/geo.png");}
+/* #dendro {background-image: url("/assets/element/dendro.png");} */
+#bow {background-image: url("/assets/weapon/bow.png");}
+#catalyst {background-image: url("/assets/weapon/catalyst.png");}
+#claymore {background-image: url("/assets/weapon/claymore.png");}
+#polearm {background-image: url("/assets/weapon/polearm.png");}
+#sword {background-image: url("/assets/weapon/sword.png");}
 
 /* #reset {
   float: right;
@@ -170,14 +170,16 @@ button { border: initial; }
 .info-col-1 {
   float: left;
   width: calc(50% - 8px);
+  /* height: 100%; */
   padding-left: 4px;
 }
 
 .material-badge {
   float: left;
   width: 56px;
-  height: 56px;
+  height: calc(100% - 16px);
   margin: 8px 0 8px 8px;
+  vertical-align: center;
 }
 
 .material-name {
@@ -189,15 +191,24 @@ button { border: initial; }
 }
 
 .material-img {
-  float: left;
+  /* float: left; */
   width: 56px;
   height: 56px;
+  /* margin-top: calc(0.5*(96px - 56px)); */
+  object-fit: contain;
 }
 
 .info-col-2 {
   float: left;
   width: calc(50% - 8px);
   margin-left: 8px;
+}
+
+.info-col-title {
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
 }
 
 .info-block {
@@ -208,6 +219,62 @@ button { border: initial; }
 }
 
 .info-text {
+}
+
+.in-calc {
+  background-color: greenyellow;
+}
+
+.info-row-1-calc {
+  float: left;
+  width: 100%;
+  /* height: 100%; */
+  /* padding-left: 4px; */
+}
+
+.info-row-2-calc {
+  float: left;
+  width: 100%;
+  /* margin-left: 8px; */
+}
+
+
+.calc-element {
+  float: left;
+  width: calc(100% - 16px);
+  height: 256px;
+  overflow: hidden;
+  margin: 8px 8px 0 8px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  font: bold 12px sans-serif;
+  color: aliceblue;
+}
+
+.calc-element:last-child {
+  margin-bottom: 8px;
+}
+
+.calc-element > * {
+  float: left;
+}
+
+.calc-info {
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  margin: 8px;
+  font-weight: normal;
+}
+
+.calc-block {
+  /* height: ; */
+}
+
+.calc-mat-output {
+  float: left;
+  text-align: center;
+  font: bold 12px sans-serif;
+  color: aliceblue;
 }
 
 /* #anemo {background: rgb(127, 255, 191) !important;}

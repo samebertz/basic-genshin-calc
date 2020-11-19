@@ -1,174 +1,224 @@
 let characterData = [
-    {
-        name: "Amber",
-        rank: 4,
-        element: "Pyro",
-        weapon: "Bow",
-        local: "Small Lamp Grass",
-        common: "Firm Arrowhead",
-        weekly: "Small Lamp Grass",
-        talent: "Small Lamp Grass"
-    },
-    {
-        name: "Barbara",
-        rank: 4,
-        element: "Hydro",
-        weapon: "Catalyst",
-        local: "Philanemo Mushroom",
-        common: "Divining Scroll"
-    },
-    {
-        name: "Beidou",
-        rank: 4,
-        element: "Electro",
-        weapon: "Claymore",
-        local: "Noctilucous Jade",
-        common: "Treasure Hoarder Insignia"
-    },
-    {
-        name: "Bennett",
-        rank: 4,
-        element: "Pyro",
-        weapon: "Sword",
-        local: "Windwheel Aster",
-        common: "Treasure Hoarder Insignia"
-    },
-    {
-        name: "Chongyun",
-        rank: 4,
-        element: "Cryo",
-        weapon: "Claymore",
-        local: "Cor Lapis",
-        common: "Damaged Mask"
-    },
-    {
-        name: "Diluc",
-        rank: 5,
-        element: "Pyro",
-        weapon: "Claymore",
-        local: "Small Lamp Grass",
-        common: "Recruit's Insignia"
-    },
-    {
-        name: "Fischl",
-        rank: 4,
-        element: "Electro",
-        weapon: "Bow",
-        local: "Small Lamp Grass",
-        common: "Firm Arrowhead"
-    },
-    {
-        name: "Jean",
-        rank: 5,
-        element: "Anemo",
-        weapon: "Sword",
-        local: "Dandelion Seed",
-        common: "Damaged Mask"
-    },
-    {
-        name: "Kaeya",
-        rank: 4,
-        element: "Cryo",
-        weapon: "Sword",
-        local: "Calla Lily",
-        common: "Treasure Hoarder Insignia"
-    },
-    {
-        name: "Keqing",
-        rank: 5,
-        element: "Electro",
-        weapon: "Sword",
-        local: "Cor Lapis",
-        common: "Whopperflower Nectar"
-    },
-    {
-        name: "Lisa",
-        rank: 4,
-        element: "Electro",
-        weapon: "Catalyst",
-        local: "Valberry",
-        common: "Slime Condensate"
-    },
-    {
-        name: "Mona",
-        rank: 5,
-        element: "Hydro",
-        weapon: "Catalyst",
-        local: "Philanemo Mushroom",
-        common: "Whopperflower Nectar"
-    },
-    {
-        name: "Ningguang",
-        rank: 4,
-        element: "Geo",
-        weapon: "Catalyst",
-        local: "Glaze Lily",
-        common: "Recruit's Insignia"
-    },
-    {
-        name: "Noelle",
-        rank: 4,
-        element: "Geo",
-        weapon: "Claymore",
-        local: "Valberry",
-        common: "Damaged Mask"
-    },
-    {
-        name: "Qiqi",
-        rank: 5,
-        element: "Cryo",
-        weapon: "Sword",
-        local: "Violetgrass",
-        common: "Divining Scroll"
-    },
-    {
-        name: "Razor",
-        rank: 4,
-        element: "Electro",
-        weapon: "Claymore",
-        local: "Wolfhook",
-        common: "Damaged Mask"
-    },
-    {
-        name: "Sucrose",
-        rank: 4,
-        element: "Anemo",
-        weapon: "Catalyst",
-        local: "Windwheel Aster",
-        common: "Whopperflower Nectar"
-    },
-    {
-        name: "Traveler",
-        rank: 5,
-        element: "Adaptive",
-        weapon: "Sword",
-        local: "Windwheel Aster",
-        common: "Damaged Mask"
-    },
-    {
-        name: "Venti",
-        rank: 5,
-        element: "Anemo",
-        weapon: "Bow",
-        local: "Cecilia",
-        common: "Slime Condensate"
-    },
-    {
-        name: "Xiangling",
-        rank: 4,
-        element: "Pyro",
-        weapon: "Polearm",
-        local: "Jueyun Chili",
-        common: "Slime Condensate"
-    },
-    {
-        name: "Xingqiu",
-        rank: 4,
-        element: "Hydro",
-        weapon: "Sword",
-        local: "Silk Flower",
-        common: "Damaged Mask"
-    }
+  {
+    "name"    : "Amber",
+    "rarity"  : 4,
+    "element" : "Pyro",
+    "weapon"  : "Bow",
+    "local"   : "Small Lamp Grass",
+    "common"  : "Firm Arrowhead",
+    "weekly"  : "Dvalin's Sigh",
+    "talent"  : "Teachings of 'Freedom'"
+  },
+  {
+    "name"    : "Barbara",
+    "rarity"  : 4,
+    "element" : "Hydro",
+    "weapon"  : "Catalyst",
+    "local"   : "Philanemo Mushroom",
+    "common"  : "Divining Scroll",
+    "weekly"  : "Ring of Boreas",
+    "talent"  : "Teachings of 'Freedom'"
+  },
+  {
+    "name"    : "Beidou",
+    "rarity"  : 4,
+    "element" : "Electro",
+    "weapon"  : "Claymore",
+    "local"   : "Noctilucous Jade",
+    "common"  : "Treasure Hoarder Insignia",
+    "weekly"  : "Dvalin's Sigh",
+    "talent"  : "Teachings of 'Gold'"
+  },
+  {
+    "name"    : "Bennett",
+    "rarity"  : 4,
+    "element" : "Pyro",
+    "weapon"  : "Sword",
+    "local"   : "Windwheel Aster",
+    "common"  : "Treasure Hoarder Insignia",
+    "weekly"  : "Dvalin's Plume",
+    "talent"  : "Teachings of 'Resistance'"
+  },
+  {
+    "name"    : "Chongyun",
+    "rarity"  : 4,
+    "element" : "Cryo",
+    "weapon"  : "Claymore",
+    "local"   : "Cor Lapis",
+    "common"  : "Damaged Mask",
+    "weekly"  : "Dvalin's Sigh",
+    "talent"  : "Teachings of 'Diligence'"
+  },
+  {
+    "name"    : "Diluc",
+    "rarity"  : 5,
+    "element" : "Pyro",
+    "weapon"  : "Claymore",
+    "local"   : "Small Lamp Grass",
+    "common"  : "Recruit's Insignia",
+    "weekly"  : "Dvalin's Plume",
+    "talent"  : "Teachings of 'Resistance'"
+  },
+  {
+    "name"    : "Fischl",
+    "rarity"  : 4,
+    "element" : "Electro",
+    "weapon"  : "Bow",
+    "local"   : "Small Lamp Grass",
+    "common"  : "Firm Arrowhead",
+    "weekly"  : "Spirit Locket of Boreas",
+    "talent"  : "Teachings of 'Ballad'"
+  },
+  {
+    "name"    : "Jean",
+    "rarity"  : 5,
+    "element" : "Anemo",
+    "weapon"  : "Sword",
+    "local"   : "Dandelion Seed",
+    "common"  : "Damaged Mask",
+    "weekly"  : "Dvalin's Plume",
+    "talent"  : "Teachings of 'Resistance'"
+  },
+  {
+    "name"    : "Kaeya",
+    "rarity"  : 4,
+    "element" : "Cryo",
+    "weapon"  : "Sword",
+    "local"   : "Calla Lily",
+    "common"  : "Treasure Hoarder Insignia",
+    "weekly"  : "Spirit Locket of Boreas",
+    "talent"  : "Teachings of 'Ballad'"
+  },
+  {
+    "name"    : "Keqing",
+    "rarity"  : 5,
+    "element" : "Electro",
+    "weapon"  : "Sword",
+    "local"   : "Cor Lapis",
+    "common"  : "Whopperflower Nectar",
+    "weekly"  : "Ring of Boreas",
+    "talent"  : "Teachings of 'Prosperity'"
+  },
+  {
+    "name"    : "Klee",
+    "rarity"  : 5,
+    "element" : "Pyro",
+    "weapon"  : "Catalyst",
+    "local"   : "Philanemo Mushroom",
+    "common"  : "Divining Scroll",
+    "weekly"  : "Ring of Boreas",
+    "talent"  : "Teachings of 'Freedom'"
+  },
+  {
+    "name"    : "Lisa",
+    "rarity"  : 4,
+    "element" : "Electro",
+    "weapon"  : "Catalyst",
+    "local"   : "Valberry",
+    "common"  : "Slime Condensate",
+    "weekly"  : "Dvalin's Claw",
+    "talent"  : "Teachings of 'Ballad'"
+  },
+  {
+    "name"    : "Mona",
+    "rarity"  : 5,
+    "element" : "Hydro",
+    "weapon"  : "Catalyst",
+    "local"   : "Philanemo Mushroom",
+    "common"  : "Whopperflower Nectar",
+    "weekly"  : "Ring of Boreas",
+    "talent"  : "Teachings of 'Resistance'"
+  },
+  {
+    "name"    : "Ningguang",
+    "rarity"  : 4,
+    "element" : "Geo",
+    "weapon"  : "Catalyst",
+    "local"   : "Glaze Lily",
+    "common"  : "Recruit's Insignia",
+    "weekly"  : "Spirit Locket of Boreas",
+    "talent"  : "Teachings of 'Prosperity'"
+  },
+  {
+    "name"    : "Noelle",
+    "rarity"  : 4,
+    "element" : "Geo",
+    "weapon"  : "Claymore",
+    "local"   : "Valberry",
+    "common"  : "Damaged Mask",
+    "weekly"  : "Dvalin's Claw",
+    "talent"  : "Teachings of 'Resistance'"
+  },
+  {
+    "name"    : "Qiqi",
+    "rarity"  : 5,
+    "element" : "Cryo",
+    "weapon"  : "Sword",
+    "local"   : "Violetgrass",
+    "common"  : "Divining Scroll",
+    "weekly"  : "Tail of Boreas",
+    "talent"  : "Teachings of 'Prosperity'"
+  },
+  {
+    "name"    : "Razor",
+    "rarity"  : 4,
+    "element" : "Electro",
+    "weapon"  : "Claymore",
+    "local"   : "Wolfhook",
+    "common"  : "Damaged Mask",
+    "weekly"  : "Dvalin's Claw",
+    "talent"  : "Teachings of 'Resistance'"
+  },
+  {
+    "name"    : "Sucrose",
+    "rarity"  : 4,
+    "element" : "Anemo",
+    "weapon"  : "Catalyst",
+    "local"   : "Windwheel Aster",
+    "common"  : "Whopperflower Nectar",
+    "weekly"  : "Spirit Locket of Boreas",
+    "talent"  : "Teachings of 'Freedom'"
+  },
+  {
+    "name"    : "Traveler",
+    "rarity"  : 5,
+    "element" : "Adaptive",
+    "weapon"  : "Sword",
+    "local"   : "Windwheel Aster",
+    "common"  : "Damaged Mask",
+    "weekly"  : "*",
+    "talent"  : "*"
+  },
+  {
+    "name"    : "Venti",
+    "rarity"  : 5,
+    "element" : "Anemo",
+    "weapon"  : "Bow",
+    "local"   : "Cecilia",
+    "common"  : "Slime Condensate",
+    "weekly"  : "Tail of Boreas",
+    "talent"  : "Teachings of 'Ballad'"
+  },
+  {
+    "name"    : "Xiangling",
+    "rarity"  : 4,
+    "element" : "Pyro",
+    "weapon"  : "Polearm",
+    "local"   : "Jueyun Chili",
+    "common"  : "Slime Condensate",
+    "weekly"  : "Dvalin's Claw",
+    "talent"  : "Teachings of 'Diligence'"
+  },
+  {
+    "name"    : "Xingqiu",
+    "rarity"  : 4,
+    "element" : "Hydro",
+    "weapon"  : "Sword",
+    "local"   : "Silk Flower",
+    "common"  : "Damaged Mask",
+    "weekly"  : "Tail of Boreas",
+    "talent"  : "Teachings of 'Gold'"
+  }
 ]
 
 function transformCharacterDataForImport(entry) {
@@ -206,13 +256,13 @@ function buildIndexes() {
         map: (doc => emit(doc.element.toLowerCase())).toString()
       },
       by_rank: {
-        map: (doc => emit(doc.rank)).toString()
+        map: (doc => emit(doc.rarity)).toString()
       },
       by_weapon: {
         map: (doc => emit(doc.weapon.toLowerCase())).toString()
       },
       by_triple: {
-        map: (doc => emit([doc.element.toLowerCase(), doc.rank, doc.weapon.toLowerCase()])).toString()
+        map: (doc => emit([doc.element.toLowerCase(), doc.rarity, doc.weapon.toLowerCase()])).toString()
       }
     }
   }

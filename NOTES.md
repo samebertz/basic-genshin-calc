@@ -27,15 +27,17 @@ assets
   ┣ domain
   ┃ ┣ weapon
   ┃ ┗ talent
-  ┣ boss
+  ┣ weekly
   ┣ elite
   ┃ ┣ crystal
   ┃ ┗ core
-  ┣ rare
-  ┣ common
+  ┣ monster
+  ┃ ┣ rare
+  ┃ ┗ common
   ┣ local
   ┗ other
 ```
+
 # MVC Pattern in Context
 ## Model
 + Data
@@ -60,3 +62,9 @@ See [...](...)
 Controller handles user input in the form of search arguments, list element interactions, filter buttons. Composes query for the model.
 
 See [index.js](src/index.js)
+
+# Scratch
+
+When creating nodes, should probably add them to a registry or something, so the same nodes aren't created and orphaned over and over again e.g. on list refresh / filter update
+
+Also probably could take advantage of HTML Templates for view components
