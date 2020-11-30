@@ -23,21 +23,23 @@ button { border: initial; }
 }
 
 #main {
-  width: calc(.7*70%);
+  /* width: calc(.7*70%); */
+  width: 624px;
   height: 100%;
   margin: 0 0 0 15%;
   background: #333333;
 }
 
 .main-subsection {
-  width: calc(100% - 16px);
-  margin: 8px 8px 0 8px;
+  /* width: calc(100% - 16px); */
+  width: 608px;
+  margin: 0 8px 0 8px;
   background: #1a1a1a;
   border-radius: 4px;
 }
 
 #sidebar {
-  width: calc(.7*30% - 16px);
+  width: calc(70% - 624px - 32px);
   height: 100%;
   margin: 0 0 0 16px;
   /* border-left: 16px solid #1a1a1a; */
@@ -47,6 +49,9 @@ button { border: initial; }
 #filter-bar {
   height: 64px;
   font-size: 0; /* fix stupid whitespace preservation between buttons */
+  background: none;
+  margin: 0;
+  width: calc(11 * 56px);
 }
 
 .filter-button {
@@ -58,6 +63,9 @@ button { border: initial; }
   background-position: center;
   background-size: 80%;
   background-repeat: no-repeat;
+
+  /* */
+  opacity: 40%;
 }
 
 #anemo {background-image: url("/assets/element/anemo.png");}
@@ -79,8 +87,17 @@ button { border: initial; }
   background: darkred;
 } */
 
+.rank-filter {
+  display: none;
+}
+
 .active-filter {
-  background-color: purple;
+  /* background-color: purple; */
+  opacity: 100%;
+}
+
+#weapon-filters {
+  float: right;
 }
 
 /* img .element-filter {
@@ -97,7 +114,7 @@ button { border: initial; }
 } */
 
 #list {
-  height: calc(100% - 64px - 3*8px);
+  height: calc(100% - 64px - 16px);
   overflow-y: scroll;
 }
 
@@ -169,7 +186,8 @@ button { border: initial; }
 
 .info-col-1 {
   float: left;
-  width: calc(50% - 8px);
+  /* width: calc(50% - 8px); */
+  width: calc(4 * 64px);
   /* height: 100%; */
   padding-left: 4px;
 }
@@ -200,15 +218,21 @@ button { border: initial; }
 
 .info-col-2 {
   float: left;
-  width: calc(50% - 8px);
-  margin-left: 8px;
+  /* width: calc(50% - 8px); */
+  width: calc(2 * 64px);
+  /* margin-left: 8px; */
+  margin-left: 64px;
 }
 
 .info-col-title {
   float: left;
-  width: 100%;
+  /* width: 100%; */
+  width: calc(100% - 8px);
+  margin-left: 8px;
   text-align: center;
   font-size: 16px;
+  border-top: lightgray 1px dashed;
+  padding-top: 4px;
 }
 
 .info-block {
@@ -238,13 +262,18 @@ button { border: initial; }
   /* margin-left: 8px; */
 }
 
+#sidebar {
+  overflow-y: scroll;
+  position: relative;
+}
 
 .calc-element {
+  display: block;
   float: left;
-  width: calc(100% - 16px);
-  height: 256px;
+  width: calc(50% - 12px);
+  height: 128px;
   overflow: hidden;
-  margin: 8px 8px 0 8px;
+  margin: 8px 0 0 8px;
   background: #1a1a1a;
   border-radius: 4px;
   font: bold 12px sans-serif;
@@ -270,11 +299,82 @@ button { border: initial; }
   /* height: ; */
 }
 
+.calc-input {
+  width: calc(100% - 116px);
+  margin: 0 0 0 8px;
+}
+
+.ascension-input {
+  margin-top: 8px;
+}
+
+.calc-input > input {
+  width: 32px;
+}
+
+.calc-input > span {
+  float: left;
+  width: calc(100% - 68px);
+  margin: 4px 0 0 4px;
+}
+
+#calc, #calc-result {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .calc-mat-output {
   float: left;
   text-align: center;
   font: bold 12px sans-serif;
   color: aliceblue;
+}
+
+.calc-mat-output-amount {
+  margin: 0 0 0 8px;
+}
+
+.calc-result-mora {
+  position: relative;
+  bottom: 0;
+}
+
+#calc-util {
+  background: lightgray;
+  position: fixed;
+  bottom: 0;
+  right: 0px;
+  width: 15%;
+  margin: 0 8px 8px 8px;
+}
+
+#calc-util-load, #calc-util-save {
+  float: left;
+  width: calc(50% - 8px);;
+}
+
+#calc-util-load {
+  margin-left: 8px;
+}
+
+#calc-load, #calc-save, #calc-copy, #calc-paste {
+  float: left;
+  margin: 8px 8px 8px 16px;
+  width: 16px;
+  height: 16px;
+  background-color: lightblue;
+  color: black;
+  font: bold 11px sans-serif;
+  text-align: center;
+}
+
+#calc-load-input, #calc-save-output {
+  resize: none;
+  width: 100%;
+  overflow-y: hidden;
+  /* font: normal 8px monospace; */
 }
 
 /* #anemo {background: rgb(127, 255, 191) !important;}

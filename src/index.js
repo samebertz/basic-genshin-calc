@@ -20,8 +20,8 @@ const ASSETS = {
   materialImg: {
     prefix: "/assets/material/",
     weapon: "domain/weapon/",
-    talent: "domain/talent/",
-    weekly: "weekly/",
+    teaching: "domain/talent/",
+    boss: "weekly/",
     crystal: "elite/crystal/",
     core: "elite/core/",
     rare: "monster/rare/",
@@ -141,6 +141,19 @@ const MATERIALS = {
     " Fragment",
     " Chunk",
     " Gemstone"
+  ],
+  "teaching": [
+    "freedom",
+    "resistance",
+    "ballad",
+    "prosperity",
+    "diligence",
+    "gold"
+  ],
+  "teachingtiers": [
+    "Teachings of \'_\'",
+    "Guide to \'_\'",
+    "Philosophies of \'_\'"
   ]
 }
 
@@ -148,6 +161,8 @@ let main = document.getElementById('main'),
     filter = main.getElementsByClassName('filter-button'),
     list = document.getElementById('list'),
     calc = document.getElementById('calc')
+
+var inCalc = new Array()
 
 // on filter update -> new model query -> on result -> list view update
 /** filterUpdate: model.getValue(queryFromFilter())
@@ -234,6 +249,7 @@ function buildCalcResult(badge, count) {
   let div = document.createElement("div"),
       countSpan = document.createElement("div"),
       countText = document.createTextNode(count)
+  countSpan.classList.add("calc-mat-output-amount")
   countSpan.appendChild(countText)
   div.replaceChildren(badge, countSpan)
   div.classList.add("calc-mat-output")
@@ -241,11 +257,12 @@ function buildCalcResult(badge, count) {
 }
 
 function compileCalc(result) {
-  let div = document.createElement("div"),
+  // console.log(result)
+  let div = document.createElement("div"), moraDiv = document.createElement("div"),
       mats = [],
       cores = { anemo: 0, pyro: 0, cryo: 0, electro: 0, hydro: 0, geo: 0 },
       crystals = { anemo: new Array(4).fill(0), pyro: new Array(4).fill(0), cryo: new Array(4).fill(0), electro: new Array(4).fill(0), hydro: new Array(4).fill(0), geo: new Array(4).fill(0) },
-      locals = {}, commons = {}
+      locals = {}, commons = {}, teachings = {}, boss = {}, mora = 0
   for({doc, materials} of result) {
     cores[doc.element.toLowerCase()] += materials.element.core
     for(let i=0; i<materials.element.crystal.length; i++) {
@@ -259,6 +276,15 @@ function compileCalc(result) {
     } else {
       commons[doc.common] = materials.common
     }
+    if(teachings.hasOwnProperty(doc.teaching)) {
+      for(let i=0; i<materials.teaching.length; i++) {
+        teachings[doc.teaching][i] += materials.teaching[i]
+      }
+    } else {
+      teachings[doc.teaching] = materials.teaching
+    }
+    boss[doc.boss] = boss[doc.boss] ? boss[doc.boss] + materials.boss : materials.boss
+    mora += materials.mora
   }
   for(element of ELEMENTS) {
     if(cores[element] > 0)
@@ -278,61 +304,140 @@ function compileCalc(result) {
         div.appendChild(buildCalcResult(buildMaterialBadge('common', MATERIALS["common"][common.toLowerCase()]["tiers"][tier].replace("_", MATERIALS["common"][common.toLowerCase()]["type"].replace(/\+.*/, ""))), commons[common][tier]))
     }
   }
-  return div
+  // console.log(teachings)
+  for(teaching in teachings) {
+    for(let tier = 0; tier < 3; tier++) {
+      if(teachings[teaching][tier] > 0){
+        // console.log(teaching, teachings[teaching])
+        div.appendChild(buildCalcResult(buildMaterialBadge('teaching', nameLookupForTalentBook(teaching, tier)), teachings[teaching][tier]))
+      }
+    }
+  }
+  for(b in boss) {
+    if(boss[b] > 0) {
+      // console.log(boss, boss[b])
+      div.appendChild(buildCalcResult(buildMaterialBadge('boss', b), boss[b]))
+    }
+  }
+  moraDiv.classList.add('calc-result-mora')
+  moraDiv.appendChild(buildCalcResult(buildMaterialBadge('other', 'mora'), mora))
+  return [div, moraDiv]
 }
 
 function updateCalc() {
   let costs = [], elements = {}, local = {}, common = {}, mora = 0
   for(e of calc.children) {
     let currentAscension = parseInt(e.getElementsByClassName("ascension-input")[0].getElementsByTagName("input")[0].value),
-        targetAscension = parseInt(e.getElementsByClassName("ascension-input")[0].getElementsByTagName("input")[1].value)
-    costs.push(getAscensionCost(e.getElementsByClassName("character-name")[0].textContent, currentAscension, targetAscension))
+        targetAscension = parseInt(e.getElementsByClassName("ascension-input")[0].getElementsByTagName("input")[1].value),
+        currentTalent1 = parseInt(e.getElementsByClassName("talent1-input")[0].getElementsByTagName("input")[0].value),
+        targetTalent1 = parseInt(e.getElementsByClassName("talent1-input")[0].getElementsByTagName("input")[1].value),
+        currentTalent2 = parseInt(e.getElementsByClassName("talent2-input")[0].getElementsByTagName("input")[0].value),
+        targetTalent2 = parseInt(e.getElementsByClassName("talent2-input")[0].getElementsByTagName("input")[1].value),
+        currentTalent3 = parseInt(e.getElementsByClassName("talent3-input")[0].getElementsByTagName("input")[0].value),
+        targetTalent3 = parseInt(e.getElementsByClassName("talent3-input")[0].getElementsByTagName("input")[1].value)
+    costs.push(getCost(e.getElementsByClassName("character-name")[0].textContent, currentAscension, targetAscension, currentTalent1, targetTalent1, currentTalent2, targetTalent2, currentTalent3, targetTalent3))
   }
   Promise.all(costs).then(result => {
-    document.getElementById("calc-result").replaceChildren(compileCalc(result))
+    let div = compileCalc(result)
+    document.getElementById("calc-result").replaceChildren(div[0], div[1])
     // calc.parentNode.lastChild.replaceWith(compileCalc(result))
   })
 }
 
 function removeFromCalc(event) {
+  inCalc.splice(inCalc.indexOf(this.parentNode.getElementsByClassName('character-name')[0].textContent), 1)
   calc.removeChild(this.parentNode)
   updateCalc()
 }
 
-function addCharacterToCalc(event) {
-  let calcItem = this.cloneNode(true),
-      ascension = document.createElement("div"),
-      aCurrent = document.createElement("input"),
-      aTarget = document.createElement("input"),
-      talentBasic = document.createElement("input"),
-      talentSkill = document.createElement("input"),
-      talentBurst = document.createElement("input"),
-      submit = document.createElement("div"),
-      remove = document.createElement("div")
-  remove.setAttribute("style", "float: left; margin: 8px; width: 16px; height: 16px; background-color: red;")
-  remove.addEventListener("click", removeFromCalc, {capture: true})
-  submit.setAttribute("style", "float: left; margin: 8px; width: 16px; height: 16px; background-color: white;")
-  submit.addEventListener("click", updateCalc, {capture: true})
-  aCurrent.setAttribute("type", "number")
-  aCurrent.setAttribute("value", "0")
-  aCurrent.setAttribute("min", "0")
-  aCurrent.setAttribute("max", "6")
-  aTarget.setAttribute("type", "number")
-  aTarget.setAttribute("value", "1")
-  aTarget.setAttribute("min", "0")
-  aTarget.setAttribute("max", "6")
-  ascension.replaceChildren(aCurrent, aTarget)
-  ascension.classList.add("ascension-input")
-  calcItem.replaceChildren(calcItem.children[0],
-                           ascension,
-                          //  talentBasic,
-                          //  talentSkill,
-                          //  talentBurst,
-                           submit,
-                           remove)
-  calc.appendChild(calcItem)
-  // this.classList.add('in-calc')
-  updateCalc()
+function addCharacterToCalc(event, options) {
+  // console.log(options)
+  if(!inCalc.includes(this.getElementsByClassName('character-name')[0].textContent)) {
+    inCalc.push(this.getElementsByClassName('character-name')[0].textContent)
+    let calcItem = this.cloneNode(true),
+        ascension = document.createElement("div"),
+        aCurrent = document.createElement("input"),
+        aTarget = document.createElement("input"),
+        talent1 = document.createElement("div"),
+        t1Current = document.createElement("input"),
+        t1Target = document.createElement("input"),
+        talent2 = document.createElement("div"),
+        t2Current = document.createElement("input"),
+        t2Target = document.createElement("input"),
+        talent3 = document.createElement("div"),
+        t3Current = document.createElement("input"),
+        t3Target = document.createElement("input"),
+        aLabel = document.createElement("span"),
+        t1Label = document.createElement("span"),
+        t2Label = document.createElement("span"),
+        t3Label = document.createElement("span"),
+        submit = document.createElement("div"),
+        submitSymbol = document.createTextNode("⭮"),
+        remove = document.createElement("div"),
+        removeSymbol = document.createTextNode("𝗫")
+    remove.appendChild(removeSymbol)
+    remove.setAttribute("style", "float: left; margin: 8px 8px 8px 16px; width: 16px; height: 16px; background-color: red; color: white; text-align: center;")
+    remove.addEventListener("click", removeFromCalc, {capture: true})
+    submit.appendChild(submitSymbol)
+    submit.setAttribute("style", "float: left; margin: 8px 8px 8px 16px; width: 16px; height: 16px; background-color: lightblue; color: black; text-align: center;")
+    submit.addEventListener("click", updateCalc, {capture: true})
+    aCurrent.setAttribute("type", "number")
+    aCurrent.setAttribute("value", options ? options[0] : "0")
+    aCurrent.setAttribute("min", "0")
+    aCurrent.setAttribute("max", "6")
+    aTarget.setAttribute("type", "number")
+    aTarget.setAttribute("value", options ? options[1] : "1")
+    aTarget.setAttribute("min", "0")
+    aTarget.setAttribute("max", "6")
+    t1Current.setAttribute("type", "number")
+    t1Current.setAttribute("value", options ? options[2] : "1")
+    t1Current.setAttribute("min", "1")
+    t1Current.setAttribute("max", "10")
+    t1Target.setAttribute("type", "number")
+    t1Target.setAttribute("value", options ? options[3] : "1")
+    t1Target.setAttribute("min", "1")
+    t1Target.setAttribute("max", "10")
+    t2Current.setAttribute("type", "number")
+    t2Current.setAttribute("value", options ? options[4] : "1")
+    t2Current.setAttribute("min", "1")
+    t2Current.setAttribute("max", "10")
+    t2Target.setAttribute("type", "number")
+    t2Target.setAttribute("value", options ? options[5] : "1")
+    t2Target.setAttribute("min", "1")
+    t2Target.setAttribute("max", "10")
+    t3Current.setAttribute("type", "number")
+    t3Current.setAttribute("value", options ? options[6] : "1")
+    t3Current.setAttribute("min", "1")
+    t3Current.setAttribute("max", "10")
+    t3Target.setAttribute("type", "number")
+    t3Target.setAttribute("value", options ? options[7] : "1")
+    t3Target.setAttribute("min", "1")
+    t3Target.setAttribute("max", "10")
+    aLabel.appendChild(document.createTextNode("Ascension"))
+    t1Label.appendChild(document.createTextNode("Basic Attack"))
+    t2Label.appendChild(document.createTextNode("Elemental Skill"))
+    t3Label.appendChild(document.createTextNode("Elemental Burst"))
+    ascension.replaceChildren(aLabel, aCurrent, aTarget)
+    talent1.replaceChildren(t1Label, t1Current, t1Target)
+    talent2.replaceChildren(t2Label, t2Current, t2Target)
+    talent3.replaceChildren(t3Label, t3Current, t3Target)
+    ascension.classList.add("ascension-input", "calc-input")
+    talent1.classList.add("talent1-input", "calc-input")
+    talent2.classList.add("talent2-input", "calc-input")
+    talent3.classList.add("talent3-input", "calc-input")
+    calcItem.classList.remove("list-element")
+    calcItem.classList.add("calc-element")
+    calcItem.replaceChildren(calcItem.children[0],
+                            ascension,
+                            talent1,
+                            talent2,
+                            talent3,
+                            submit,
+                            remove)
+    calc.appendChild(calcItem)
+    // this.classList.add('in-calc')
+    updateCalc()
+  }
 }
 
 /**
@@ -396,6 +501,7 @@ function buildInfoBlock(label, value) {
  * @param {int} tier - tier of the material
  */
 function buildMaterialBadge(type, name, tier) {
+  // console.log(name)
   let div = document.createElement('div'),
       img = document.createElement('img'),
       nameSpan = document.createElement('span'),
@@ -414,6 +520,10 @@ function buildMaterialBadge(type, name, tier) {
 
 function nameLookupForElementMat(mat, element) {
   return MATERIALS.element[element.toLowerCase()][mat]
+}
+
+function nameLookupForTalentBook(mat, rarity) {
+  return MATERIALS["teachingtiers"][rarity].replace("_", mat)
 }
 
 function listItemFromCharacterDoc(doc) {
@@ -440,9 +550,10 @@ function listItemFromCharacterDoc(doc) {
   infoCol1.appendChild(buildInfoColTitle("Ascension Materials"))
 
   infoCol2.classList.add('info-col-2')
-  for(mat of ['talent', 'weekly']) {
+  for(mat of ['boss']) {
     infoCol2.appendChild(buildMaterialBadge(mat, doc[mat]))
   }
+  infoCol2.appendChild(buildMaterialBadge('teaching', nameLookupForTalentBook(doc["teaching"], 0)))
   infoCol2.appendChild(buildInfoColTitle("Talent Materials"))
 
   characterInfo.classList.add('character-info')
@@ -460,3 +571,35 @@ function listItemFromCharacterDoc(doc) {
 for(element of filter) {
   element.addEventListener('click', filterUpdate, {capture: true})
 }
+
+function validateLoadString(str) {
+  return true
+}
+
+document.getElementById("calc-load").addEventListener("click", function(event) {
+  let json = JSON.parse(document.getElementById("calc-load-input").value)
+  // console.log(json)
+  if(validateLoadString(json)) {
+    Promise.all(json.map(e => db.get(e.name))).then(r => {
+      // console.log(r)
+      for(let i=0; i<r.length; i++) {
+        let item = listItemFromCharacterDoc(r[i])
+        addCharacterToCalc.bind(item)(undefined, json[i].params)
+      }
+    })
+  } else {
+    console.log("Invalid string")
+  }
+})
+
+function getCalcItemAsJSON(item) {
+  return {
+    "name": item.getElementsByClassName("character-name")[0].textContent,
+    "params": Array.prototype.slice.call(item.getElementsByTagName("input")).map(e => e.value)
+  }
+}
+
+document.getElementById("calc-save").addEventListener("click", function(event) {
+  let encodedString = JSON.stringify(Array.prototype.slice.call(document.getElementById("calc").children).map(e => getCalcItemAsJSON(e)))
+  document.getElementById("calc-save-output").value = encodedString
+})

@@ -122,6 +122,99 @@ const ASCENSIONMATS = {
   }
 }
 
+const TALENTMATS = {
+  1: {
+    "ascension": 0,
+    "teaching amount": 0,
+    "teaching rarity": 0,
+    "common amount": 0,
+    "common rarity": 0,
+    "mora": 0,
+    "boss amount": 0
+  },
+  2: {
+    "ascension": 2,
+    "teaching amount": 3,
+    "teaching rarity": 2,
+    "common amount": 6,
+    "common rarity": 1,
+    "mora": 12500,
+    "boss amount": 0
+  },
+  3: {
+    "ascension": 3,
+    "teaching amount": 2,
+    "teaching rarity": 3,
+    "common amount": 3,
+    "common rarity": 2,
+    "mora": 17500,
+    "boss amount": 0
+  },
+  4: {
+    "ascension": 3,
+    "teaching amount": 4,
+    "teaching rarity": 3,
+    "common amount": 4,
+    "common rarity": 2,
+    "mora": 25000,
+    "boss amount": 0
+  },
+  5: {
+    "ascension": 4,
+    "teaching amount": 6,
+    "teaching rarity": 3,
+    "common amount": 6,
+    "common rarity": 2,
+    "mora": 30000,
+    "boss amount": 0
+  },
+  6: {
+    "ascension": 4,
+    "teaching amount": 9,
+    "teaching rarity": 3,
+    "common amount": 9,
+    "common rarity": 2,
+    "mora": 37500,
+    "boss amount": 0
+  },
+  7: {
+    "ascension": 5,
+    "teaching amount": 4,
+    "teaching rarity": 4,
+    "common amount": 4,
+    "common rarity": 3,
+    "mora": 120000,
+    "boss amount": 1
+  },
+  8: {
+    "ascension": 5,
+    "teaching amount": 6,
+    "teaching rarity": 4,
+    "common amount": 6,
+    "common rarity": 3,
+    "mora": 260000,
+    "boss amount": 1
+  },
+  9: {
+    "ascension": 6,
+    "teaching amount": 12,
+    "teaching rarity": 4,
+    "common amount": 9,
+    "common rarity": 3,
+    "mora": 450000,
+    "boss amount": 2
+  },
+  10: {
+    "ascension": 6,
+    "teaching amount": 16,
+    "teaching rarity": 4,
+    "common amount": 12,
+    "common rarity": 3,
+    "mora": 700000,
+    "boss amount": 2
+  }
+}
+
 /**
  * Character ascension calculations
  */
@@ -142,6 +235,54 @@ function getAscensionCost(name, from, to) {
     materials.common[ASCENSIONMATS[i]['common rarity']-1] += ASCENSIONMATS[i]['common amount']
     materials.mora += ASCENSIONMATS[i]['mora']
   }
+  // return db.get(name).then(doc => {
+  //   return {doc: doc, materials: materials}
+  // }).catch(e => console.log(e))
+  return materials
+}
+
+/**
+ * Character talent level up calculations
+ */
+function getTalentCost(name, from, to) {
+  let materials = {
+    teaching: [0,0,0],
+    common: [0,0,0],
+    boss: 0,
+    mora: 0
+  }
+  for(let i=from+1; i<=to; i++) {
+    materials.teaching[TALENTMATS[i]['teaching rarity']-2] += TALENTMATS[i]['teaching amount']
+    materials.common[TALENTMATS[i]['common rarity']-1] += TALENTMATS[i]['common amount']
+    materials.mora += TALENTMATS[i]['mora']
+    materials.boss += TALENTMATS[i]['boss amount']
+  }
+  // return db.get(name).then(doc => {
+  //   return {doc: doc, materials: materials}
+  // }).catch(e => console.log(e))
+  return materials
+}
+
+function getCost(name, aFrom, aTo, t1From, t1To, t2From, t2To, t3From, t3To) {
+  // console.log("getCost("+[].slice.call(arguments)+")")
+  let costs = [
+    getAscensionCost(name, aFrom, aTo),
+    getTalentCost(name, t1From, t1To),
+    getTalentCost(name, t2From, t2To),
+    getTalentCost(name, t3From, t3To)
+  ]
+  let tCosts = costs.slice(1,4)
+  console.log(tCosts)
+  let materials = {
+    element: costs[0].element,
+    local: costs[0].local,
+    common: costs.reduce((a, c) => a.map((_c, i) => _c + c.common[i]), [0,0,0]),
+    teaching: tCosts.reduce((a, c) => a.map((_c, i) => _c + c.teaching[i]), [0,0,0]),
+    boss: tCosts.reduce((a, c) => a + c.boss, 0),
+    mora: costs.reduce((a, c) => a + c.mora, 0)
+  }
+  console.log(materials.teaching)
+
   return db.get(name).then(doc => {
     return {doc: doc, materials: materials}
   }).catch(e => console.log(e))

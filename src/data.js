@@ -6,8 +6,8 @@ let characterData = [
     "weapon"  : "Bow",
     "local"   : "Small Lamp Grass",
     "common"  : "Firm Arrowhead",
-    "weekly"  : "Dvalin's Sigh",
-    "talent"  : "Teachings of 'Freedom'"
+    "boss"  : "Dvalin's Sigh",
+    "teaching"  : "Freedom"
   },
   {
     "name"    : "Barbara",
@@ -16,8 +16,8 @@ let characterData = [
     "weapon"  : "Catalyst",
     "local"   : "Philanemo Mushroom",
     "common"  : "Divining Scroll",
-    "weekly"  : "Ring of Boreas",
-    "talent"  : "Teachings of 'Freedom'"
+    "boss"  : "Ring of Boreas",
+    "teaching"  : "Freedom"
   },
   {
     "name"    : "Beidou",
@@ -26,8 +26,8 @@ let characterData = [
     "weapon"  : "Claymore",
     "local"   : "Noctilucous Jade",
     "common"  : "Treasure Hoarder Insignia",
-    "weekly"  : "Dvalin's Sigh",
-    "talent"  : "Teachings of 'Gold'"
+    "boss"  : "Dvalin's Sigh",
+    "teaching"  : "Gold"
   },
   {
     "name"    : "Bennett",
@@ -36,8 +36,8 @@ let characterData = [
     "weapon"  : "Sword",
     "local"   : "Windwheel Aster",
     "common"  : "Treasure Hoarder Insignia",
-    "weekly"  : "Dvalin's Plume",
-    "talent"  : "Teachings of 'Resistance'"
+    "boss"  : "Dvalin's Plume",
+    "teaching"  : "Resistance"
   },
   {
     "name"    : "Chongyun",
@@ -46,8 +46,8 @@ let characterData = [
     "weapon"  : "Claymore",
     "local"   : "Cor Lapis",
     "common"  : "Damaged Mask",
-    "weekly"  : "Dvalin's Sigh",
-    "talent"  : "Teachings of 'Diligence'"
+    "boss"  : "Dvalin's Sigh",
+    "teaching"  : "Diligence"
   },
   {
     "name"    : "Diluc",
@@ -56,8 +56,8 @@ let characterData = [
     "weapon"  : "Claymore",
     "local"   : "Small Lamp Grass",
     "common"  : "Recruit's Insignia",
-    "weekly"  : "Dvalin's Plume",
-    "talent"  : "Teachings of 'Resistance'"
+    "boss"  : "Dvalin's Plume",
+    "teaching"  : "Resistance"
   },
   {
     "name"    : "Fischl",
@@ -66,8 +66,8 @@ let characterData = [
     "weapon"  : "Bow",
     "local"   : "Small Lamp Grass",
     "common"  : "Firm Arrowhead",
-    "weekly"  : "Spirit Locket of Boreas",
-    "talent"  : "Teachings of 'Ballad'"
+    "boss"  : "Spirit Locket of Boreas",
+    "teaching"  : "Ballad"
   },
   {
     "name"    : "Jean",
@@ -76,8 +76,8 @@ let characterData = [
     "weapon"  : "Sword",
     "local"   : "Dandelion Seed",
     "common"  : "Damaged Mask",
-    "weekly"  : "Dvalin's Plume",
-    "talent"  : "Teachings of 'Resistance'"
+    "boss"  : "Dvalin's Plume",
+    "teaching"  : "Resistance"
   },
   {
     "name"    : "Kaeya",
@@ -86,8 +86,8 @@ let characterData = [
     "weapon"  : "Sword",
     "local"   : "Calla Lily",
     "common"  : "Treasure Hoarder Insignia",
-    "weekly"  : "Spirit Locket of Boreas",
-    "talent"  : "Teachings of 'Ballad'"
+    "boss"  : "Spirit Locket of Boreas",
+    "teaching"  : "Ballad"
   },
   {
     "name"    : "Keqing",
@@ -96,8 +96,8 @@ let characterData = [
     "weapon"  : "Sword",
     "local"   : "Cor Lapis",
     "common"  : "Whopperflower Nectar",
-    "weekly"  : "Ring of Boreas",
-    "talent"  : "Teachings of 'Prosperity'"
+    "boss"  : "Ring of Boreas",
+    "teaching"  : "Prosperity"
   },
   {
     "name"    : "Klee",
@@ -106,8 +106,8 @@ let characterData = [
     "weapon"  : "Catalyst",
     "local"   : "Philanemo Mushroom",
     "common"  : "Divining Scroll",
-    "weekly"  : "Ring of Boreas",
-    "talent"  : "Teachings of 'Freedom'"
+    "boss"  : "Ring of Boreas",
+    "teaching"  : "Freedom"
   },
   {
     "name"    : "Lisa",
@@ -116,8 +116,8 @@ let characterData = [
     "weapon"  : "Catalyst",
     "local"   : "Valberry",
     "common"  : "Slime Condensate",
-    "weekly"  : "Dvalin's Claw",
-    "talent"  : "Teachings of 'Ballad'"
+    "boss"  : "Dvalin's Claw",
+    "teaching"  : "Ballad"
   },
   {
     "name"    : "Mona",
@@ -126,8 +126,8 @@ let characterData = [
     "weapon"  : "Catalyst",
     "local"   : "Philanemo Mushroom",
     "common"  : "Whopperflower Nectar",
-    "weekly"  : "Ring of Boreas",
-    "talent"  : "Teachings of 'Resistance'"
+    "boss"  : "Ring of Boreas",
+    "teaching"  : "Resistance"
   },
   {
     "name"    : "Ningguang",
@@ -136,8 +136,8 @@ let characterData = [
     "weapon"  : "Catalyst",
     "local"   : "Glaze Lily",
     "common"  : "Recruit's Insignia",
-    "weekly"  : "Spirit Locket of Boreas",
-    "talent"  : "Teachings of 'Prosperity'"
+    "boss"  : "Spirit Locket of Boreas",
+    "teaching"  : "Prosperity"
   },
   {
     "name"    : "Noelle",
@@ -146,8 +146,8 @@ let characterData = [
     "weapon"  : "Claymore",
     "local"   : "Valberry",
     "common"  : "Damaged Mask",
-    "weekly"  : "Dvalin's Claw",
-    "talent"  : "Teachings of 'Resistance'"
+    "boss"  : "Dvalin's Claw",
+    "teaching"  : "Resistance"
   },
   {
     "name"    : "Qiqi",
@@ -156,8 +156,8 @@ let characterData = [
     "weapon"  : "Sword",
     "local"   : "Violetgrass",
     "common"  : "Divining Scroll",
-    "weekly"  : "Tail of Boreas",
-    "talent"  : "Teachings of 'Prosperity'"
+    "boss"  : "Tail of Boreas",
+    "teaching"  : "Prosperity"
   },
   {
     "name"    : "Razor",
@@ -166,8 +166,8 @@ let characterData = [
     "weapon"  : "Claymore",
     "local"   : "Wolfhook",
     "common"  : "Damaged Mask",
-    "weekly"  : "Dvalin's Claw",
-    "talent"  : "Teachings of 'Resistance'"
+    "boss"  : "Dvalin's Claw",
+    "teaching"  : "Resistance"
   },
   {
     "name"    : "Sucrose",
@@ -176,8 +176,8 @@ let characterData = [
     "weapon"  : "Catalyst",
     "local"   : "Windwheel Aster",
     "common"  : "Whopperflower Nectar",
-    "weekly"  : "Spirit Locket of Boreas",
-    "talent"  : "Teachings of 'Freedom'"
+    "boss"  : "Spirit Locket of Boreas",
+    "teaching"  : "Freedom"
   },
   {
     "name"    : "Traveler",
@@ -186,8 +186,8 @@ let characterData = [
     "weapon"  : "Sword",
     "local"   : "Windwheel Aster",
     "common"  : "Damaged Mask",
-    "weekly"  : "*",
-    "talent"  : "*"
+    "boss"  : "*",
+    "teaching"  : "*"
   },
   {
     "name"    : "Venti",
@@ -196,8 +196,8 @@ let characterData = [
     "weapon"  : "Bow",
     "local"   : "Cecilia",
     "common"  : "Slime Condensate",
-    "weekly"  : "Tail of Boreas",
-    "talent"  : "Teachings of 'Ballad'"
+    "boss"  : "Tail of Boreas",
+    "teaching"  : "Ballad"
   },
   {
     "name"    : "Xiangling",
@@ -206,8 +206,8 @@ let characterData = [
     "weapon"  : "Polearm",
     "local"   : "Jueyun Chili",
     "common"  : "Slime Condensate",
-    "weekly"  : "Dvalin's Claw",
-    "talent"  : "Teachings of 'Diligence'"
+    "boss"  : "Dvalin's Claw",
+    "teaching"  : "Diligence"
   },
   {
     "name"    : "Xingqiu",
@@ -216,8 +216,8 @@ let characterData = [
     "weapon"  : "Sword",
     "local"   : "Silk Flower",
     "common"  : "Damaged Mask",
-    "weekly"  : "Tail of Boreas",
-    "talent"  : "Teachings of 'Gold'"
+    "boss"  : "Tail of Boreas",
+    "teaching"  : "Gold"
   }
 ]
 

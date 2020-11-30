@@ -44,18 +44,35 @@
 
         <button id="4" class="filter-button rank-filter"></button>
         <button id="5" class="filter-button rank-filter"></button>
-
-        <button id="bow" class="filter-button weapon-filter"></button>
-        <button id="catalyst" class="filter-button weapon-filter"></button>
-        <button id="claymore" class="filter-button weapon-filter"></button>
-        <button id="polearm" class="filter-button weapon-filter"></button>
-        <button id="sword" class="filter-button weapon-filter"></button>
+        <div id="weapon-filters">
+          <button id="bow" class="filter-button weapon-filter"></button>
+          <button id="catalyst" class="filter-button weapon-filter"></button>
+          <button id="claymore" class="filter-button weapon-filter"></button>
+          <button id="polearm" class="filter-button weapon-filter"></button>
+          <button id="sword" class="filter-button weapon-filter"></button>
+        </div>
       </div>
       <div id="list" class="main-subsection"></div>
     </div>
     <div id="sidebar">
       <div id="calc"></div>
       <div id="calc-result"></div>
+    </div>
+    <div id="calc-util">
+      <div id="calc-util-load">
+        <label for="calc-load-input">Paste encoded save here:</label>
+        <textarea id="calc-load-input" rows="2" spellcheck="false"></textarea>
+        <div id="calc-load"><!--📂-->⭮ APPLY</div>
+        <!-- <div id="calc-paste">📋 PASTE</div> -->
+      </div>
+      <div id="calc-util-save">
+        <label for="calc-save-output">Copy encoded save here:</label>
+        <textarea id="calc-save-output" rows="2" readonly></textarea>
+        <div id="calc-save"><!--💾-->⭮ UPDATE</div>
+        <!-- <div id="calc-copy"><span style="font-size: 9px; margin-right: .125em; position: relative; top: -.1em; left: -.125em">
+          📄<span style="position: absolute; top: .25em; left: .25em">📄</span>
+        </span> COPY</div> -->
+      </div>
     </div>
   </div>
   <!-- <div id="footer"></div> -->
