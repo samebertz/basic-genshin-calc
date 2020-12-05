@@ -1,4 +1,4 @@
-const TOTALEXP = [0,1000,2325,4025,6175,8800,11950,15675,20025,25025,30725,37175,44400,52450,61375,71200,81950,93675,106400,120175,135050,151850,169850,189100,209650,231525,254775,279425,305525,333100,362200,392850,425100,458975,494525,531775,570750,611500,654075,698500,744800,795425,848125,902900,959800,1018875,1080150,1143675,1209475,1277600,1348075,1424575,1503625,1585275,1669550,1756500,1846150,1938550,2033725,2131725,2232600,2341550,2453600,2568775,2687100,2808625,2933400,3061475,3192875,3327650,3465825,3614525,3766900,3922975,4082800,4246400,4413825,4585125,4760350,4939525,5122700]
+const TOTALEXP = [0,0,1000,2325,4025,6175,8800,11950,15675,20025,25025,30725,37175,44400,52450,61375,71200,81950,93675,106400,120175,135050,151850,169850,189100,209650,231525,254775,279425,305525,333100,362200,392850,425100,458975,494525,531775,570750,611500,654075,698500,744800,795425,848125,902900,959800,1018875,1080150,1143675,1209475,1277600,1348075,1424575,1503625,1585275,1669550,1756500,1846150,1938550,2033725,2131725,2232600,2341550,2453600,2568775,2687100,2808625,2933400,3061475,3192875,3327650,3465825,3614525,3766900,3922975,4082800,4246400,4413825,4585125,4760350,4939525,5122700,5338925,5581950,5855050,6161850,6506450,6893400,7327825,7815450,8362650]
 
 
 /**
@@ -17,7 +17,8 @@ function getLevelCost(from, to) {
   fromXP = TOTALEXP[from], toXP = TOTALEXP[to]
   materials = calculateXPMaterials(toXP - fromXP)
   mora = calculateMoraForXPMaterials(materials)
-  return [materials, mora]
+  console.log("getlvlcost "+materials)
+  return {xpbooks: materials, mora: mora}
 }
 
 
@@ -263,25 +264,27 @@ function getTalentCost(name, from, to) {
   return materials
 }
 
-function getCost(name, aFrom, aTo, t1From, t1To, t2From, t2To, t3From, t3To) {
+function getCost(name, lFrom, lTo, aFrom, aTo, t1From, t1To, t2From, t2To, t3From, t3To) {
   // console.log("getCost("+[].slice.call(arguments)+")")
   let costs = [
     getAscensionCost(name, aFrom, aTo),
     getTalentCost(name, t1From, t1To),
     getTalentCost(name, t2From, t2To),
     getTalentCost(name, t3From, t3To)
-  ]
-  let tCosts = costs.slice(1,4)
-  console.log(tCosts)
+  ], levelCost = getLevelCost(lFrom, lTo)
+  costs.unshift(levelCost)
+  let tCosts = costs.slice(2,5)
+  // console.log(costs, tCosts)
   let materials = {
-    element: costs[0].element,
-    local: costs[0].local,
-    common: costs.reduce((a, c) => a.map((_c, i) => _c + c.common[i]), [0,0,0]),
+    xpbooks: costs[0].xpbooks,
+    element: costs[1].element,
+    local: costs[1].local,
+    common: costs.slice(1,5).reduce((a, c) => a.map((_c, i) => _c + c.common[i]), [0,0,0]),
     teaching: tCosts.reduce((a, c) => a.map((_c, i) => _c + c.teaching[i]), [0,0,0]),
     boss: tCosts.reduce((a, c) => a + c.boss, 0),
     mora: costs.reduce((a, c) => a + c.mora, 0)
   }
-  console.log(materials.teaching)
+  // console.log(materials.teaching)
 
   return db.get(name).then(doc => {
     return {doc: doc, materials: materials}

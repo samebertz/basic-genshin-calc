@@ -27,7 +27,8 @@ const ASSETS = {
     rare: "monster/rare/",
     common: "monster/common/",
     local: "local/",
-    other: "other/"
+    other: "other/",
+    xp: "other/enhancement/"
   }
 }
 const MATERIALS = {
@@ -154,6 +155,11 @@ const MATERIALS = {
     "Teachings of \'_\'",
     "Guide to \'_\'",
     "Philosophies of \'_\'"
+  ],
+  "xpbooktiers": [
+    "Wanderer's Advice",
+    "Adventurer's Experience",
+    "Hero's Wit"
   ]
 }
 
@@ -259,10 +265,10 @@ function buildCalcResult(badge, count) {
 function compileCalc(result) {
   // console.log(result)
   let div = document.createElement("div"), moraDiv = document.createElement("div"),
-      mats = [],
+      // mats = [],
       cores = { anemo: 0, pyro: 0, cryo: 0, electro: 0, hydro: 0, geo: 0 },
       crystals = { anemo: new Array(4).fill(0), pyro: new Array(4).fill(0), cryo: new Array(4).fill(0), electro: new Array(4).fill(0), hydro: new Array(4).fill(0), geo: new Array(4).fill(0) },
-      locals = {}, commons = {}, teachings = {}, boss = {}, mora = 0
+      locals = {}, commons = {}, teachings = {}, boss = {}, xpbooks = new Array(3).fill(0), mora = 0
   for({doc, materials} of result) {
     cores[doc.element.toLowerCase()] += materials.element.core
     for(let i=0; i<materials.element.crystal.length; i++) {
@@ -284,6 +290,11 @@ function compileCalc(result) {
       teachings[doc.teaching] = materials.teaching
     }
     boss[doc.boss] = boss[doc.boss] ? boss[doc.boss] + materials.boss : materials.boss
+    console.log(materials.xpbooks)
+    for(let i=0; i<materials.xpbooks.length; i++) {
+      xpbooks[i] += materials.xpbooks[i]
+    }
+    console.log(xpbooks)
     mora += materials.mora
   }
   for(element of ELEMENTS) {
@@ -319,6 +330,13 @@ function compileCalc(result) {
       div.appendChild(buildCalcResult(buildMaterialBadge('boss', b), boss[b]))
     }
   }
+  for(let tier = 0; tier < 3; tier++) {
+    console.log('xpbooks tier' + tier)
+    if(xpbooks[tier] > 0) {
+      console.log(xpbooks[tier])
+      div.appendChild(buildCalcResult(buildMaterialBadge('xp', MATERIALS["xpbooktiers"][tier]), xpbooks[tier]))
+    }
+  }
   moraDiv.classList.add('calc-result-mora')
   moraDiv.appendChild(buildCalcResult(buildMaterialBadge('other', 'mora'), mora))
   return [div, moraDiv]
@@ -327,7 +345,9 @@ function compileCalc(result) {
 function updateCalc() {
   let costs = [], elements = {}, local = {}, common = {}, mora = 0
   for(e of calc.children) {
-    let currentAscension = parseInt(e.getElementsByClassName("ascension-input")[0].getElementsByTagName("input")[0].value),
+    let currentLevel = parseInt(e.getElementsByClassName("level-input")[0].getElementsByTagName("input")[0].value),
+        targetLevel = parseInt(e.getElementsByClassName("level-input")[0].getElementsByTagName("input")[1].value),
+        currentAscension = parseInt(e.getElementsByClassName("ascension-input")[0].getElementsByTagName("input")[0].value),
         targetAscension = parseInt(e.getElementsByClassName("ascension-input")[0].getElementsByTagName("input")[1].value),
         currentTalent1 = parseInt(e.getElementsByClassName("talent1-input")[0].getElementsByTagName("input")[0].value),
         targetTalent1 = parseInt(e.getElementsByClassName("talent1-input")[0].getElementsByTagName("input")[1].value),
@@ -335,7 +355,7 @@ function updateCalc() {
         targetTalent2 = parseInt(e.getElementsByClassName("talent2-input")[0].getElementsByTagName("input")[1].value),
         currentTalent3 = parseInt(e.getElementsByClassName("talent3-input")[0].getElementsByTagName("input")[0].value),
         targetTalent3 = parseInt(e.getElementsByClassName("talent3-input")[0].getElementsByTagName("input")[1].value)
-    costs.push(getCost(e.getElementsByClassName("character-name")[0].textContent, currentAscension, targetAscension, currentTalent1, targetTalent1, currentTalent2, targetTalent2, currentTalent3, targetTalent3))
+    costs.push(getCost(e.getElementsByClassName("character-name")[0].textContent, currentLevel, targetLevel, currentAscension, targetAscension, currentTalent1, targetTalent1, currentTalent2, targetTalent2, currentTalent3, targetTalent3))
   }
   Promise.all(costs).then(result => {
     let div = compileCalc(result)
@@ -355,6 +375,9 @@ function addCharacterToCalc(event, options) {
   if(!inCalc.includes(this.getElementsByClassName('character-name')[0].textContent)) {
     inCalc.push(this.getElementsByClassName('character-name')[0].textContent)
     let calcItem = this.cloneNode(true),
+        level = document.createElement("div"),
+        lCurrent = document.createElement("input"),
+        lTarget = document.createElement("input"),
         ascension = document.createElement("div"),
         aCurrent = document.createElement("input"),
         aTarget = document.createElement("input"),
@@ -368,6 +391,7 @@ function addCharacterToCalc(event, options) {
         t3Current = document.createElement("input"),
         t3Target = document.createElement("input"),
         aLabel = document.createElement("span"),
+        lLabel = document.createElement("span"),
         t1Label = document.createElement("span"),
         t2Label = document.createElement("span"),
         t3Label = document.createElement("span"),
@@ -376,17 +400,27 @@ function addCharacterToCalc(event, options) {
         remove = document.createElement("div"),
         removeSymbol = document.createTextNode("𝗫")
     remove.appendChild(removeSymbol)
-    remove.setAttribute("style", "float: left; margin: 8px 8px 8px 16px; width: 16px; height: 16px; background-color: red; color: white; text-align: center;")
+    remove.classList.add("calc-element-ctrl", "calc-element-remove")
+    // remove.setAttribute("style", "float: left; margin: 8px 8px 8px 16px; width: 16px; height: 16px; background-color: red; color: white; text-align: center;")
     remove.addEventListener("click", removeFromCalc, {capture: true})
     submit.appendChild(submitSymbol)
-    submit.setAttribute("style", "float: left; margin: 8px 8px 8px 16px; width: 16px; height: 16px; background-color: lightblue; color: black; text-align: center;")
+    submit.classList.add("calc-element-ctrl", "calc-element-update")
+    // submit.setAttribute("style", "float: left; margin: 8px 8px 8px 16px; width: 16px; height: 16px; background-color: lightblue; color: black; text-align: center;")
     submit.addEventListener("click", updateCalc, {capture: true})
+    lCurrent.setAttribute("type", "number")
+    lCurrent.setAttribute("value", options ? options[0] : "1")
+    lCurrent.setAttribute("min", "1")
+    lCurrent.setAttribute("max", "90")
+    lTarget.setAttribute("type", "number")
+    lTarget.setAttribute("value", options ? options[1] : "1")
+    lTarget.setAttribute("min", "1")
+    lTarget.setAttribute("max", "90")
     aCurrent.setAttribute("type", "number")
     aCurrent.setAttribute("value", options ? options[0] : "0")
     aCurrent.setAttribute("min", "0")
     aCurrent.setAttribute("max", "6")
     aTarget.setAttribute("type", "number")
-    aTarget.setAttribute("value", options ? options[1] : "1")
+    aTarget.setAttribute("value", options ? options[1] : "0")
     aTarget.setAttribute("min", "0")
     aTarget.setAttribute("max", "6")
     t1Current.setAttribute("type", "number")
@@ -413,14 +447,17 @@ function addCharacterToCalc(event, options) {
     t3Target.setAttribute("value", options ? options[7] : "1")
     t3Target.setAttribute("min", "1")
     t3Target.setAttribute("max", "10")
+    lLabel.appendChild(document.createTextNode("Level"))
     aLabel.appendChild(document.createTextNode("Ascension"))
     t1Label.appendChild(document.createTextNode("Basic Attack"))
     t2Label.appendChild(document.createTextNode("Elemental Skill"))
     t3Label.appendChild(document.createTextNode("Elemental Burst"))
+    level.replaceChildren(lLabel, lCurrent, lTarget)
     ascension.replaceChildren(aLabel, aCurrent, aTarget)
     talent1.replaceChildren(t1Label, t1Current, t1Target)
     talent2.replaceChildren(t2Label, t2Current, t2Target)
     talent3.replaceChildren(t3Label, t3Current, t3Target)
+    level.classList.add("level-input", "calc-input")
     ascension.classList.add("ascension-input", "calc-input")
     talent1.classList.add("talent1-input", "calc-input")
     talent2.classList.add("talent2-input", "calc-input")
@@ -428,6 +465,7 @@ function addCharacterToCalc(event, options) {
     calcItem.classList.remove("list-element")
     calcItem.classList.add("calc-element")
     calcItem.replaceChildren(calcItem.children[0],
+                            level,
                             ascension,
                             talent1,
                             talent2,
