@@ -17,7 +17,7 @@ function getLevelCost(from, to) {
   fromXP = TOTALEXP[from], toXP = TOTALEXP[to]
   materials = calculateXPMaterials(toXP - fromXP)
   mora = calculateMoraForXPMaterials(materials)
-  console.log("getlvlcost "+materials)
+  // console.log("getlvlcost "+materials)
   return {xpbooks: materials, mora: mora}
 }
 

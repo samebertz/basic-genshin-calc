@@ -290,11 +290,11 @@ function compileCalc(result) {
       teachings[doc.teaching] = materials.teaching
     }
     boss[doc.boss] = boss[doc.boss] ? boss[doc.boss] + materials.boss : materials.boss
-    console.log(materials.xpbooks)
+    // console.log(materials.xpbooks)
     for(let i=0; i<materials.xpbooks.length; i++) {
       xpbooks[i] += materials.xpbooks[i]
     }
-    console.log(xpbooks)
+    // console.log(xpbooks)
     mora += materials.mora
   }
   for(element of ELEMENTS) {
@@ -331,9 +331,9 @@ function compileCalc(result) {
     }
   }
   for(let tier = 0; tier < 3; tier++) {
-    console.log('xpbooks tier' + tier)
+    // console.log('xpbooks tier' + tier)
     if(xpbooks[tier] > 0) {
-      console.log(xpbooks[tier])
+      // console.log(xpbooks[tier])
       div.appendChild(buildCalcResult(buildMaterialBadge('xp', MATERIALS["xpbooktiers"][tier]), xpbooks[tier]))
     }
   }
@@ -358,7 +358,8 @@ function updateCalc() {
     costs.push(getCost(e.getElementsByClassName("character-name")[0].textContent, currentLevel, targetLevel, currentAscension, targetAscension, currentTalent1, targetTalent1, currentTalent2, targetTalent2, currentTalent3, targetTalent3))
   }
   Promise.all(costs).then(result => {
-    let div = compileCalc(result)
+    let div = compileCalc(result),
+        encodedString = JSON.stringify(Array.prototype.slice.call(calc.children).map(e => getCalcItemAsJSON(e)))
     document.getElementById("calc-result").replaceChildren(div[0], div[1])
     // calc.parentNode.lastChild.replaceWith(compileCalc(result))
   })
@@ -398,7 +399,8 @@ function addCharacterToCalc(event, options) {
         submit = document.createElement("div"),
         submitSymbol = document.createTextNode("⭮"),
         remove = document.createElement("div"),
-        removeSymbol = document.createTextNode("𝗫")
+        removeSymbol = document.createTextNode("𝗫"),
+        inputs = [lCurrent, lTarget, aCurrent, aTarget, t1Current, t1Target, t2Current, t2Target, t3Current, t3Target]
     remove.appendChild(removeSymbol)
     remove.classList.add("calc-element-ctrl", "calc-element-remove")
     // remove.setAttribute("style", "float: left; margin: 8px 8px 8px 16px; width: 16px; height: 16px; background-color: red; color: white; text-align: center;")
@@ -416,35 +418,35 @@ function addCharacterToCalc(event, options) {
     lTarget.setAttribute("min", "1")
     lTarget.setAttribute("max", "90")
     aCurrent.setAttribute("type", "number")
-    aCurrent.setAttribute("value", options ? options[0] : "0")
+    aCurrent.setAttribute("value", options ? options[2] : "0")
     aCurrent.setAttribute("min", "0")
     aCurrent.setAttribute("max", "6")
     aTarget.setAttribute("type", "number")
-    aTarget.setAttribute("value", options ? options[1] : "0")
+    aTarget.setAttribute("value", options ? options[3] : "0")
     aTarget.setAttribute("min", "0")
     aTarget.setAttribute("max", "6")
     t1Current.setAttribute("type", "number")
-    t1Current.setAttribute("value", options ? options[2] : "1")
+    t1Current.setAttribute("value", options ? options[4] : "1")
     t1Current.setAttribute("min", "1")
     t1Current.setAttribute("max", "10")
     t1Target.setAttribute("type", "number")
-    t1Target.setAttribute("value", options ? options[3] : "1")
+    t1Target.setAttribute("value", options ? options[5] : "1")
     t1Target.setAttribute("min", "1")
     t1Target.setAttribute("max", "10")
     t2Current.setAttribute("type", "number")
-    t2Current.setAttribute("value", options ? options[4] : "1")
+    t2Current.setAttribute("value", options ? options[6] : "1")
     t2Current.setAttribute("min", "1")
     t2Current.setAttribute("max", "10")
     t2Target.setAttribute("type", "number")
-    t2Target.setAttribute("value", options ? options[5] : "1")
+    t2Target.setAttribute("value", options ? options[7] : "1")
     t2Target.setAttribute("min", "1")
     t2Target.setAttribute("max", "10")
     t3Current.setAttribute("type", "number")
-    t3Current.setAttribute("value", options ? options[6] : "1")
+    t3Current.setAttribute("value", options ? options[8] : "1")
     t3Current.setAttribute("min", "1")
     t3Current.setAttribute("max", "10")
     t3Target.setAttribute("type", "number")
-    t3Target.setAttribute("value", options ? options[7] : "1")
+    t3Target.setAttribute("value", options ? options[9] : "1")
     t3Target.setAttribute("min", "1")
     t3Target.setAttribute("max", "10")
     lLabel.appendChild(document.createTextNode("Level"))
@@ -472,6 +474,7 @@ function addCharacterToCalc(event, options) {
                             talent3,
                             submit,
                             remove)
+    inputs.forEach(i => i.addEventListener('input', updateCalc))
     calc.appendChild(calcItem)
     // this.classList.add('in-calc')
     updateCalc()
@@ -615,7 +618,8 @@ function validateLoadString(str) {
 }
 
 document.getElementById("calc-load").addEventListener("click", function(event) {
-  let json = JSON.parse(document.getElementById("calc-load-input").value)
+  // let json = JSON.parse(document.getElementById("calc-load-input").value)
+  let json = JSON.parse(localStorage.getItem('encCalc'))
   // console.log(json)
   if(validateLoadString(json)) {
     Promise.all(json.map(e => db.get(e.name))).then(r => {
@@ -640,4 +644,5 @@ function getCalcItemAsJSON(item) {
 document.getElementById("calc-save").addEventListener("click", function(event) {
   let encodedString = JSON.stringify(Array.prototype.slice.call(document.getElementById("calc").children).map(e => getCalcItemAsJSON(e)))
   document.getElementById("calc-save-output").value = encodedString
+  localStorage.setItem('encCalc', encodedString)
 })

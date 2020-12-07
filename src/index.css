@@ -313,10 +313,18 @@ button { border: initial; }
   width: 32px;
 }
 
+.level-input > input {
+  width: 40px;
+}
+
 .calc-input > span {
   float: left;
   width: calc(100% - 68px);
   margin: 4px 0 0 4px;
+}
+
+.level-input > span {
+  width: calc(100% - 68px - 16px);
 }
 
 .calc-element-ctrl {
