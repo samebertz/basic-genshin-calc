@@ -1,2 +1,2 @@
-# gremlin-calculator
-A tool for doing gremlin math.
+# basic-genshin-calc
+A basic calculator for Genshin Impact materials.
